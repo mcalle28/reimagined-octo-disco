@@ -83,7 +83,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7735897108505325918}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!114 &7735897108505325916
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,10 +131,9 @@ GameObject:
   - component: {fileID: 7735897109210170574}
   - component: {fileID: 7735897109210170578}
   - component: {fileID: 7735897109210170577}
-  - component: {fileID: -5193714349755446277}
-  - component: {fileID: -3687201703484172625}
-  - component: {fileID: -1373822326306028197}
-  - component: {fileID: 4995035496379521675}
+  - component: {fileID: 6682502166806804901}
+  - component: {fileID: 1395545954113376815}
+  - component: {fileID: 4056133112242116763}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -287,7 +286,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &-5193714349755446277
+--- !u!114 &6682502166806804901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -296,14 +295,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 7735897109210170575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 951099334
-  AlwaysReplicateAsRoot: 0
-  DontDestroyWithOwner: 1
-  AutoObjectParentSync: 1
---- !u!114 &-3687201703484172625
+  sceneId: 0
+  serverOnly: 0
+  visible: 0
+  m_AssetId: 3570ee51518cc2441a42c2f66f50d518
+  hasSpawned: 0
+--- !u!114 &1395545954113376815
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -312,25 +312,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 7735897109210170575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f74aedd71d9a4f55b3ce499326d45fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SyncPositionX: 1
-  SyncPositionY: 1
-  SyncPositionZ: 1
-  SyncRotAngleX: 1
-  SyncRotAngleY: 1
-  SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
-  PositionThreshold: 0.001
-  RotAngleThreshold: 0.01
-  ScaleThreshold: 0.01
-  InLocalSpace: 0
-  Interpolate: 1
-  CanCommitToTransform: 0
---- !u!114 &-1373822326306028197
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  sendInterval: 0.01
+  syncPosition: 1
+  syncRotation: 1
+  syncScale: 1
+  interpolatePosition: 1
+  interpolateRotation: 1
+  interpolateScale: 1
+  bufferTimeMultiplier: 1
+  bufferSizeLimit: 64
+  catchupThreshold: 4
+  catchupMultiplier: 0.1
+  onlySyncOnChange: 1
+  bufferResetMultiplier: 5
+  positionSensitivity: 0.01
+  rotationSensitivity: 0.01
+  scaleSensitivity: 0.01
+  showGizmos: 0
+  showOverlay: 0
+  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
+--- !u!114 &4056133112242116763
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -339,21 +346,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7735897109210170575}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 80d7c879794dfda4687da0e400131852, type: 3}
+  m_Script: {fileID: 11500000, guid: 786e682d5177f9f40bcf707061781aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &4995035496379521675
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7735897109210170575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e8d0727d5ae3244e3b569694d3912374, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Animator: {fileID: 7735897109210170577}
-  m_ParameterSendBits: 0
-  m_SendRate: 0.1
+  syncMode: 0
+  syncInterval: 0.1
+  speed: 5
