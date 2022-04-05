@@ -7,7 +7,6 @@ public class PlayerControl : NetworkBehaviour
 {
 
     public float speed;
-    public float help;
     public Camera _playerCamera;
     private Rigidbody2D myRigidBody;
     private Vector3 change;
