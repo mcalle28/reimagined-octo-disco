@@ -7,11 +7,13 @@ public class PlayerControl : NetworkBehaviour
 {
 
     public float speed;
+    public float help;
+    public Camera _playerCamera;
     private Rigidbody2D myRigidBody;
     private Vector3 change;
     private Animator animator;
 
-    private Camera _playerCamera;
+
 
     void Start()
     {
@@ -19,7 +21,6 @@ public class PlayerControl : NetworkBehaviour
         {
             myRigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
-            _playerCamera = Camera.main;
         }
     }
 
