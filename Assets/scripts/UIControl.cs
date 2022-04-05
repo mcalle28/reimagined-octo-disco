@@ -9,7 +9,6 @@ public class UIControl : MonoBehaviour
     public GameObject PanelStart;
     public GameObject PanelStop;
     public GameObject PanelJoin;
-    public GameObject CameraMain;
 
     public Button buttonHost, buttonClient;
 
@@ -59,7 +58,6 @@ public class UIControl : MonoBehaviour
             if (NetworkClient.active)
             {
                 Debug.Log("Server Start");
-                CameraMain.SetActive(false);
                 PanelStart.SetActive(false);
                 MainScreen.SetActive(false);
                 PanelJoin.SetActive(false);
@@ -71,7 +69,6 @@ public class UIControl : MonoBehaviour
                 Debug.Log("Server Not connect");
 
                 PanelStart.SetActive(true);
-                CameraMain.SetActive(true);
                 PanelJoin.SetActive(false);
                 MainScreen.SetActive(true);
                 PanelStop.SetActive(false);
@@ -82,7 +79,6 @@ public class UIControl : MonoBehaviour
         {
             PanelStart.SetActive(false);
             PanelJoin.SetActive(false);
-            CameraMain.SetActive(false);
             MainScreen.SetActive(false);
             Lobby.SetActive(true);
             PanelStop.SetActive(true);
