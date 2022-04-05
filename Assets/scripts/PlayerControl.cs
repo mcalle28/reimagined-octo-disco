@@ -18,6 +18,10 @@ public class PlayerControl : NetworkBehaviour
         myRigidBody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
+        if (isLocalPlayer)
+        {
+            _playerCamera = Camera.main;
+        }
     }
 
     void Update()
