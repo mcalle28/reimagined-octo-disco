@@ -55852,7 +55852,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sceneId: 1342151359
   serverOnly: 1
-  visible: 1
+  visible: 0
   m_AssetId: 
   hasSpawned: 0
 --- !u!1 &998265984
