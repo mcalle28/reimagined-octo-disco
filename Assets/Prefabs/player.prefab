@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 6682502166806804901}
   - component: {fileID: 1395545954113376815}
   - component: {fileID: 4056133112242116763}
+  - component: {fileID: 7458556814903089520}
   m_Layer: 0
   m_Name: player
   m_TagString: Untagged
@@ -322,9 +323,9 @@ MonoBehaviour:
   syncPosition: 1
   syncRotation: 1
   syncScale: 1
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 1
+  interpolatePosition: 0
+  interpolateRotation: 0
+  interpolateScale: 0
   bufferTimeMultiplier: 1
   bufferSizeLimit: 64
   catchupThreshold: 4
@@ -352,3 +353,19 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   speed: 5
+--- !u!114 &7458556814903089520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7735897109210170575}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f6f3bf89aa97405989c802ba270f815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  clientAuthority: 1
+  animator: {fileID: 7735897109210170577}
