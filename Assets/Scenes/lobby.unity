@@ -25093,6 +25093,7 @@ MonoBehaviour:
   PanelStart: {fileID: 1313639310}
   PanelStop: {fileID: 990947281}
   PanelJoin: {fileID: 1405141343}
+  CameraMain: {fileID: 982041188}
   buttonHost: {fileID: 1204723116}
   buttonClient: {fileID: 998265986}
   inputFieldAddress: {fileID: 1403897973}

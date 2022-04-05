@@ -21,6 +21,7 @@ public class PlayerControl : NetworkBehaviour
         {
             myRigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
+            _playerCamera = Camera.main;
         }
     }
 
