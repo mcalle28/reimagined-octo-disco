@@ -15,43 +15,51 @@ public class PlayerControl : NetworkBehaviour
 
     void Start()
     {
-        myRigidBody = GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-
         if (isLocalPlayer)
         {
+            myRigidBody = GetComponent<Rigidbody2D>();
+            animator = GetComponent<Animator>();
             _playerCamera = Camera.main;
         }
     }
 
     void Update()
     {
-        change = Vector3.zero;
-        change.x = Input.GetAxis("Horizontal");
-        change.y = Input.GetAxis("Vertical");
-        UpdateAnimationAndMove();
+        if (isLocalPlayer)
+        {
+            change = Vector3.zero;
+            change.x = Input.GetAxis("Horizontal");
+            change.y = Input.GetAxis("Vertical");
+            UpdateAnimationAndMove();
+         }
     }
 
     void UpdateAnimationAndMove()
     {
-        if (change != Vector3.zero)
+        if (isLocalPlayer)
         {
-            MoveCharacter();
-            animator.SetFloat("moveX", change.x);
-            animator.SetFloat("moveY", change.y);
-            animator.SetBool("moving", true);
-        }
-        else
-        {
-            animator.SetBool("moving", false);
+            if (change != Vector3.zero)
+            {
+                MoveCharacter();
+                animator.SetFloat("moveX", change.x);
+                animator.SetFloat("moveY", change.y);
+                animator.SetBool("moving", true);
+            }
+            else
+            {
+                animator.SetBool("moving", false);
+            }
         }
     }
 
     void MoveCharacter()
     {
-        myRigidBody.MovePosition(
+        if (isLocalPlayer)
+        {
+            myRigidBody.MovePosition(
             transform.position + change * speed * Time.deltaTime
         );
+        }
     }
 
     private void LateUpdate()
