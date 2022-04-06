@@ -220,8 +220,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  speed: 7
-  help: 0
+  speed: 25
   _playerCamera: {fileID: 0}
 --- !u!114 &609417915946188636
 MonoBehaviour:
