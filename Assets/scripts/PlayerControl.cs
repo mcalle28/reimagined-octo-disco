@@ -14,53 +14,39 @@ public class PlayerControl : NetworkBehaviour
 
 
 
-    void Start()
+    private void Start()
     {
         if (isLocalPlayer)
         {
             myRigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             _playerCamera = Camera.main;
+            _playerCamera.orthographicSize=5; //Change in the future for mouse wheel zoom
         }
     }
 
-    void Update()
+    private void Update()
     {
-        if (isLocalPlayer)
-        {
+        if (isLocalPlayer){
             change = Vector3.zero;
             change.x = Input.GetAxis("Horizontal");
             change.y = Input.GetAxis("Vertical");
-            UpdateAnimationAndMove();
-         }
-    }
 
-    void UpdateAnimationAndMove()
-    {
-        if (isLocalPlayer)
-        {
-            if (change != Vector3.zero)
-            {
-                MoveCharacter();
+            if (change != Vector3.zero){
                 animator.SetFloat("moveX", change.x);
                 animator.SetFloat("moveY", change.y);
                 animator.SetBool("moving", true);
             }
-            else
-            {
+            else{
                 animator.SetBool("moving", false);
             }
         }
     }
 
-    void MoveCharacter()
+    private void FixedUpdate()
     {
-        if (isLocalPlayer)
-        {
-            myRigidBody.MovePosition(
-            transform.position + change * speed * Time.deltaTime
-        );
-        }
+        if (!isLocalPlayer) return;
+            myRigidBody.MovePosition(transform.position + change * speed * Time.deltaTime);
     }
 
     private void LateUpdate()
