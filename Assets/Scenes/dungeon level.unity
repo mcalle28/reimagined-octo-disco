@@ -119730,6 +119730,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8890120300378378134, guid: dd0f9b99cf9ef044da45fab9046b1ea3, type: 3}
+      propertyPath: sceneId
+      value: 101029451
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dd0f9b99cf9ef044da45fab9046b1ea3, type: 3}
 --- !u!1001 &7735897108906691715
@@ -119742,6 +119746,10 @@ PrefabInstance:
     - target: {fileID: -5193714349755446277, guid: 3570ee51518cc2441a42c2f66f50d518, type: 3}
       propertyPath: GlobalObjectIdHash
       value: 1464216792
+      objectReference: {fileID: 0}
+    - target: {fileID: 6682502166806804901, guid: 3570ee51518cc2441a42c2f66f50d518, type: 3}
+      propertyPath: sceneId
+      value: 384367237
       objectReference: {fileID: 0}
     - target: {fileID: 7735897109210170575, guid: 3570ee51518cc2441a42c2f66f50d518, type: 3}
       propertyPath: m_Name

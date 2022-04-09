@@ -13,7 +13,6 @@ namespace OneNightFollow
             if (!Application.isBatchMode)
             { //Headless build
                 Debug.Log($"=== Client and player Build ===");
-                networkManager.StartClient();
             }
             else
             {
