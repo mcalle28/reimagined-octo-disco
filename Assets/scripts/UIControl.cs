@@ -2,10 +2,11 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UIControl : MonoBehaviour
 {
-    public GameObject Lobby,MainScreen;
+    public GameObject MainScreen;
     public GameObject PanelStart;
     public GameObject PanelStop;
     public GameObject PanelJoin;
@@ -58,31 +59,15 @@ public class UIControl : MonoBehaviour
             if (NetworkClient.active)
             {
                 Debug.Log("Server Start");
-                PanelStart.SetActive(false);
-                MainScreen.SetActive(false);
-                PanelJoin.SetActive(false);
-                Lobby.SetActive(true);
-                PanelStop.SetActive(true);
+                SceneManager.LoadScene("Room", LoadSceneMode.Additive);
             }
             else
             {
                 Debug.Log("Server Not connect");
-
-                PanelStart.SetActive(true);
-                PanelJoin.SetActive(false);
-                MainScreen.SetActive(true);
-                PanelStop.SetActive(false);
-                Lobby.SetActive(false);
             }
         }
         else
         {
-            PanelStart.SetActive(false);
-            PanelJoin.SetActive(false);
-            MainScreen.SetActive(false);
-            Lobby.SetActive(true);
-            PanelStop.SetActive(true);
-
             Debug.Log("Server Setting Active Lobby");
         }
     }
