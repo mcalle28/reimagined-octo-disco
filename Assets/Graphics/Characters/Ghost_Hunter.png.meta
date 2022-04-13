@@ -24,6 +24,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -322,6 +323,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      Ghost_Hunter_6: -6582624063968874999
+      Ghost_Hunter_9: -6227824977947972454
+      Ghost_Hunter_3: -5624000381132191064
+      Ghost_Hunter_4: 8393017998513199289
+      Ghost_Hunter_2: 5569505949785599710
+      Ghost_Hunter_7: -2495552644522059198
+      Ghost_Hunter_1: 5707632668451989909
+      Ghost_Hunter_8: 3740666876252520284
+      Ghost_Hunter_0: -4240706122201768744
+      Ghost_Hunter_5: -8632987818187406602
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

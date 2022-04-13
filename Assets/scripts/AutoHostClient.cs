@@ -17,6 +17,7 @@ namespace OneNightFollow
             else
             {
                 Debug.Log($"=== Dedicated Server build ===");
+                networkManager.StartServer();
             }
         }
 

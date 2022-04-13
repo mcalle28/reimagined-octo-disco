@@ -414,6 +414,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -3584,6 +3585,137 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      wals_tileset_48: -291256896186047426
+      wals_tileset_116: -893572640761974074
+      wals_tileset_15: 4910485474710230690
+      wals_tileset_107: -8637297664603091372
+      wals_tileset_41: 8940288827279525832
+      wals_tileset_59: 9135499043303079065
+      wals_tileset_77: -2081021699592039953
+      wals_tileset_24: 5185859187917659178
+      wals_tileset_70: 5944966627575903514
+      wals_tileset_12: -6990357687883495109
+      wals_tileset_92: -2019127781750815763
+      wals_tileset_34: 5363696494720420506
+      wals_tileset_78: 7475764736998494721
+      wals_tileset_26: 9133202376607229224
+      wals_tileset_76: -2320156800823205236
+      wals_tileset_87: -1368669788191862501
+      wals_tileset_114: 3102813816576192418
+      wals_tileset_19: -1631117569350659543
+      wals_tileset_21: -3280257140395107598
+      wals_tileset_112: -7134576877895957118
+      wals_tileset_85: 488463890745214492
+      wals_tileset_0: 6554205205217267310
+      wals_tileset_1: -882595083341128876
+      wals_tileset_68: -3985281342346556903
+      wals_tileset_65: 8389111440799125877
+      wals_tileset_31: 7166985641777934328
+      wals_tileset_83: 3498152431867309899
+      wals_tileset_95: 8463258610496591036
+      wals_tileset_57: -7119044581543413624
+      wals_tileset_88: 2544122810804995937
+      wals_tileset_29: 6661303141118037561
+      wals_tileset_71: 1934742581974044053
+      wals_tileset_90: 4691000140584979993
+      wals_tileset_104: -8456103618000921683
+      wals_tileset_69: 9140565423221213329
+      wals_tileset_63: 1822459308993855024
+      wals_tileset_110: -541378206961812876
+      wals_tileset_5: 4681877406839821983
+      wals_tileset_23: -823455799300286230
+      wals_tileset_75: -3107902893071410411
+      wals_tileset_18: 4026871105511442227
+      wals_tileset_117: -8912409645178792003
+      wals_tileset_35: -7368522147351182540
+      wals_tileset_55: 5613286528346020265
+      wals_tileset_4: -1798243647090269366
+      wals_tileset_7: -3238619661752045101
+      wals_tileset_93: -6846507597280032006
+      wals_tileset_43: 1682731003346209956
+      wals_tileset_73: -5198769877698508731
+      wals_tileset_124: -1802185131357222529
+      wals_tileset_102: -720500777640779149
+      wals_tileset_81: -8308057593235681156
+      wals_tileset_11: 1708958203957732405
+      wals_tileset_64: 8218215792094384380
+      wals_tileset_108: -8010293503231108802
+      wals_tileset_8: 8470857340104846602
+      wals_tileset_10: 5591288686322804718
+      wals_tileset_58: 980040955076197361
+      wals_tileset_74: -7884273165398117086
+      wals_tileset_45: 1783983674088767165
+      wals_tileset_109: -976027296047317239
+      wals_tileset_53: -8331487595171857368
+      wals_tileset_129: -3985819724011301468
+      wals_tileset_79: 1826521946643510578
+      wals_tileset_60: -5965151055352895001
+      wals_tileset_14: 6192255840142819574
+      wals_tileset_42: 6565583906104731544
+      wals_tileset_128: -3383715184848070625
+      wals_tileset_120: -8211266853733984354
+      wals_tileset_39: -5426833609585139005
+      wals_tileset_2: -7716449288515982793
+      wals_tileset_122: -5574529047593354815
+      wals_tileset_86: 4169552987977814319
+      wals_tileset_16: 3757406746849425797
+      wals_tileset_99: 9033269630040924677
+      wals_tileset_32: -8769222018485935839
+      wals_tileset_62: -7748413467151486906
+      wals_tileset_25: -1051478883450624983
+      wals_tileset_50: -6759426209443500872
+      wals_tileset_96: -2508731005681156866
+      wals_tileset_111: -145159835153775791
+      wals_tileset_22: -6161380167381147023
+      wals_tileset_30: 6808305165478163101
+      wals_tileset_89: -7573192151977509964
+      wals_tileset_66: 1932816806629159399
+      wals_tileset_94: 2440359536030868376
+      wals_tileset_98: -8456912390839740975
+      wals_tileset_56: -7028896147100459892
+      wals_tileset_9: 8693367698737497224
+      wals_tileset_125: 6925384689247001067
+      wals_tileset_105: 1581375961338118555
+      wals_tileset_38: -7640598721456167925
+      wals_tileset_113: 3114445728664846585
+      wals_tileset_119: 5268908118677982236
+      wals_tileset_72: 5362465133917958358
+      wals_tileset_67: 5369986538559517349
+      wals_tileset_126: -2174999721733238280
+      wals_tileset_17: 3946254642275184618
+      wals_tileset_47: 6602387944898471290
+      wals_tileset_6: -8444496469926946790
+      wals_tileset_91: 6533925636102040349
+      wals_tileset_36: -6924927604746396569
+      wals_tileset_101: 9048520422849682809
+      wals_tileset_127: -4880803575243412314
+      wals_tileset_80: -847711681583243913
+      wals_tileset_40: 8650780239775805722
+      wals_tileset_27: 1116541166872369795
+      wals_tileset_51: -5727591943326793396
+      wals_tileset_61: -3938813546173681572
+      wals_tileset_103: 1814653435144797213
+      wals_tileset_52: 3149431871868186730
+      wals_tileset_44: -6551607280114110287
+      wals_tileset_13: -865688740611457885
+      wals_tileset_46: 49935997015534252
+      wals_tileset_118: -1153968353098035437
+      wals_tileset_49: -1018405500326407852
+      wals_tileset_28: 7166873364149992193
+      wals_tileset_33: -5890995090539554370
+      wals_tileset_82: 6408909483929331141
+      wals_tileset_106: -4662873303658154850
+      wals_tileset_20: 6227473699378345027
+      wals_tileset_100: -8585757087450879799
+      wals_tileset_121: 142502766054136239
+      wals_tileset_115: -5435851180679963692
+      wals_tileset_97: 2341186118298244319
+      wals_tileset_54: 2698611220215925564
+      wals_tileset_123: 3289138477793151299
+      wals_tileset_3: -2651604862592118357
+      wals_tileset_84: 723627917283131649
+      wals_tileset_37: 755659000907468534
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

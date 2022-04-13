@@ -21,7 +21,7 @@ public class PlayerControl : NetworkBehaviour
             myRigidBody = GetComponent<Rigidbody2D>();
             animator = GetComponent<Animator>();
             _playerCamera = Camera.main;
-            _playerCamera.orthographicSize=5; //Change in the future for mouse wheel zoom
+            _playerCamera.orthographicSize=2; //Change in the future for mouse wheel zoom
         }
     }
 
