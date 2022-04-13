@@ -59,7 +59,6 @@ public class UIControl : MonoBehaviour
             if (NetworkClient.active)
             {
                 Debug.Log("Server Start");
-                SceneManager.LoadScene("Room", LoadSceneMode.Additive);
             }
             else
             {
