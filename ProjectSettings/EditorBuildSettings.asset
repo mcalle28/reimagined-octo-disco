@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Lobby.unity
     guid: 188c3ea7a49612f449bfab9884bbec16
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Dungeon Level.unity
     guid: ceeac17d2f9e14c6996d5895e09238a8
   - enabled: 0
@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: 9974a7f86b5984d0d8e6391b1f9ac7d2
+  - enabled: 1
+    path: Assets/Scenes/New Dungeon Level.unity
+    guid: d3ed47a67aaebc540b5167ae576a08e3
   m_configObjects: {}

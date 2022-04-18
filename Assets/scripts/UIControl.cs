@@ -2,8 +2,6 @@ using Mirror;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
-
 public class UIControl : MonoBehaviour
 {
     public GameObject MainScreen;
@@ -14,6 +12,8 @@ public class UIControl : MonoBehaviour
     public Button buttonHost, buttonClient;
 
     public TMP_InputField inputFieldAddress;
+    public TMP_InputField inputFieldName;
+    public TMP_InputField inputFieldHostName;
 
 
     private void Start()
@@ -23,6 +23,8 @@ public class UIControl : MonoBehaviour
 
         //Adds a listener to the main input field and invokes a method when the value changes.
         inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
+        inputFieldName.onValueChanged.AddListener(delegate { NameChangeCheck(); });
+        inputFieldHostName.onValueChanged.AddListener(delegate { HostNameChangeCheck(); });
         //Make sure to attach these Buttons in the Inspector
         buttonHost.onClick.AddListener(ButtonHost);
         buttonClient.onClick.AddListener(ButtonClient);
@@ -34,6 +36,16 @@ public class UIControl : MonoBehaviour
     public void ValueChangeCheck()
     {
         NetworkManager.singleton.networkAddress = inputFieldAddress.text;
+    }
+
+    public void NameChangeCheck()
+    {
+        LocalStore.instance.setPlayerName(inputFieldName.text);
+    }
+
+    public void HostNameChangeCheck()
+    {
+        LocalStore.instance.setPlayerName(inputFieldHostName.text);
     }
 
     public void ButtonHost()
@@ -58,6 +70,7 @@ public class UIControl : MonoBehaviour
         {
             if (NetworkClient.active)
             {
+                Debug.Log(NetworkManager.singleton);
                 Debug.Log("Server Start");
             }
             else
