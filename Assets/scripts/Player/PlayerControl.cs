@@ -9,18 +9,23 @@ public class PlayerControl : Player
     [SyncVar]
     public float speed;
 
-    private Vector3 dir;
-    private Animator animator;
+    [SerializeField]
+    private float cameraSize = 2.5f;
 
-    private void Start()
+    private Vector3 dir;
+    public Animator animator;
+    public SpriteRenderer spriteRenderer;
+
+    public virtual void Start()
     {
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         if (hasAuthority)
         {
             Camera cam = Camera.main;
             cam.transform.SetParent(transform);
             cam.transform.localPosition = new Vector3(0f, 0f, -10f);
-            cam.orthographicSize = 2.5f;
+            cam.orthographicSize = cameraSize;
         }
     }
 

@@ -138,7 +138,7 @@ GameObject:
   - component: {fileID: 2932772985972070736}
   - component: {fileID: 8890120300378378134}
   m_Layer: 18
-  m_Name: Ghost_Hunter_9
+  m_Name: Ghost_Hunter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -246,11 +246,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  role: 0
   playerName: 
+  text: {fileID: 0}
   isMoveable: 1
   speed: 6.5
-  text: {fileID: 0}
+  cameraSize: 2.5
 --- !u!50 &5380692545231258386
 Rigidbody2D:
   serializedVersion: 4

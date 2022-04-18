@@ -5,8 +5,6 @@ using Mirror;
 using TMPro;
 
 public class Player : NetworkBehaviour {
-    public Role role;
-
     [SyncVar (hook = nameof(SetPlayerName_Hook))]
     public string playerName;
 

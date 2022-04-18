@@ -35,4 +35,14 @@ public class GameRuleStore : NetworkBehaviour
             SetRecommendRule();
         }
     }
+
+    public GameRuleData GetGameRuleData()
+    {
+        return new GameRuleData()
+        {
+            movespeed = movespeed,
+            hunterMoveSpeed = hunterMoveSpeed,
+            hunterSight = hunterSight
+        };
+    }
 }
