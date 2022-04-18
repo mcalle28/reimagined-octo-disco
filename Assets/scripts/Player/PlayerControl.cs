@@ -1,6 +1,4 @@
 using Mirror;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
@@ -13,7 +11,6 @@ public class PlayerControl : Player
 
     private Vector3 dir;
     private Animator animator;
-    public TMP_Text text;
 
     private void Start()
     {
@@ -24,7 +21,6 @@ public class PlayerControl : Player
             cam.transform.SetParent(transform);
             cam.transform.localPosition = new Vector3(0f, 0f, -10f);
             cam.orthographicSize = 2.5f;
-            text.SetText(playerName);
         }
     }
 

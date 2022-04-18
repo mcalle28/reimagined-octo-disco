@@ -40,12 +40,12 @@ public class UIControl : MonoBehaviour
 
     public void NameChangeCheck()
     {
-        LocalStore.instance.setPlayerName(inputFieldName.text);
+        PlayerSettings.playerName = inputFieldName.text;
     }
 
     public void HostNameChangeCheck()
     {
-        LocalStore.instance.setPlayerName(inputFieldHostName.text);
+        PlayerSettings.playerName = inputFieldHostName.text;
     }
 
     public void ButtonHost()
