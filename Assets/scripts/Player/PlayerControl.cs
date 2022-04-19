@@ -14,15 +14,26 @@ public class PlayerControl : Player
 
     private Vector3 dir;
     public Animator animator;
-    public SpriteRenderer spriteRenderer;
 
     public virtual void Start()
     {
         animator = GetComponent<Animator>();
-        spriteRenderer = GetComponent<SpriteRenderer>();
         if (hasAuthority)
         {
             Camera cam = Camera.main;
+            if(cam != null)
+            {
+                cam.transform.SetParent(transform);
+                cam.transform.localPosition = new Vector3(0f, 0f, -10f);
+                cam.orthographicSize = cameraSize;
+            }
+        }
+    }
+
+    public void SetCamera(Camera cam)
+    {
+        if (hasAuthority)
+        {
             cam.transform.SetParent(transform);
             cam.transform.localPosition = new Vector3(0f, 0f, -10f);
             cam.orthographicSize = cameraSize;
