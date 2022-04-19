@@ -69,6 +69,14 @@
    </object>
   </objectgroup>
  </tile>
+ <tile id="8">
+  <properties>
+   <property name="CollisionSet1" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0" y="-0.112468" width="63.9944" height="64.2193"/>
+  </objectgroup>
+ </tile>
  <tile id="9">
   <properties>
    <property name="CollisionSet1" type="bool" value="true"/>
@@ -109,12 +117,28 @@
    <object id="1" x="16" y="0" width="47.625" height="64"/>
   </objectgroup>
  </tile>
+ <tile id="21">
+  <properties>
+   <property name="CollisionSet1" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.112468" y="-0.112468" width="63.9944" height="63.9944"/>
+  </objectgroup>
+ </tile>
  <tile id="22">
   <properties>
    <property name="CollisionSet1" type="bool" value="true"/>
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0" y="0.25" width="64" height="47.625"/>
+  </objectgroup>
+ </tile>
+ <tile id="24">
+  <properties>
+   <property name="CollisionSet1" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="8.66005" y="13.9461" width="47.9114" height="38.5766"/>
   </objectgroup>
  </tile>
  <tile id="26">
@@ -159,6 +183,14 @@
    <object id="1" x="-0.25" y="17.25">
     <polygon points="0,0 16.75,-18 64.625,-17.25 64.5,46.625 0.375,46.625"/>
    </object>
+  </objectgroup>
+ </tile>
+ <tile id="34">
+  <properties>
+   <property name="CollisionSet1" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.112468" y="0.112468" width="63.657" height="63.657"/>
   </objectgroup>
  </tile>
  <tile id="35">
@@ -392,6 +424,14 @@
   </properties>
   <objectgroup draworder="index" id="2">
    <object id="1" x="0.25" y="0" width="63.875" height="63.875"/>
+  </objectgroup>
+ </tile>
+ <tile id="87">
+  <properties>
+   <property name="CollisionSet1" type="bool" value="true"/>
+  </properties>
+  <objectgroup draworder="index" id="2">
+   <object id="1" x="0.112468" y="0" width="63.9944" height="63.9944"/>
   </objectgroup>
  </tile>
  <tile id="91">
