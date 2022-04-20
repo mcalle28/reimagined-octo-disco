@@ -173,9 +173,9 @@ MonoBehaviour:
   playerName: 
   text: {fileID: 2990512481338830734}
   isMoveable: 1
-  speed: 5
+  speed: 4.5
   cameraSize: 2.5
-  animator: {fileID: 0}
+  animator: {fileID: 5360058479685567532}
   ownerNetId: 0
 --- !u!95 &5360058479685567532
 Animator:
@@ -228,16 +228,16 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 1
-  sendInterval: 0.005
+  sendInterval: 0.01
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 0
-  bufferTimeMultiplier: 1
+  bufferTimeMultiplier: 3
   bufferSizeLimit: 64
-  catchupThreshold: 4
+  catchupThreshold: 6
   catchupMultiplier: 0.1
   onlySyncOnChange: 1
   bufferResetMultiplier: 5

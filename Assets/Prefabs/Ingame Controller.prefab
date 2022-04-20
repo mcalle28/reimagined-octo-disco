@@ -207,16 +207,16 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 1
-  sendInterval: 0.005
+  sendInterval: 0.01
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
   interpolatePosition: 1
   interpolateRotation: 1
   interpolateScale: 0
-  bufferTimeMultiplier: 1
+  bufferTimeMultiplier: 3
   bufferSizeLimit: 64
-  catchupThreshold: 4
+  catchupThreshold: 6
   catchupMultiplier: 0.1
   onlySyncOnChange: 1
   bufferResetMultiplier: 5
@@ -245,7 +245,7 @@ MonoBehaviour:
   isMoveable: 1
   speed: 5
   cameraSize: 2.5
-  animator: {fileID: 0}
+  animator: {fileID: 4886458304182748621}
   role: 0
 --- !u!1 &2356985290470626646
 GameObject:
