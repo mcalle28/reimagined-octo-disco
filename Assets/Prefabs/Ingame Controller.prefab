@@ -207,7 +207,7 @@ MonoBehaviour:
   syncMode: 0
   syncInterval: 0.1
   clientAuthority: 1
-  sendInterval: 0.05
+  sendInterval: 0.005
   syncPosition: 1
   syncRotation: 1
   syncScale: 0
@@ -246,7 +246,6 @@ MonoBehaviour:
   speed: 5
   cameraSize: 2.5
   animator: {fileID: 0}
-  spriteRenderer: {fileID: 0}
   role: 0
 --- !u!1 &2356985290470626646
 GameObject:
