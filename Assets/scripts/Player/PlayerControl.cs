@@ -5,6 +5,7 @@ using TMPro;
 public class PlayerControl : Player
 {
     public bool isMoveable;
+    private bool isMoving = false;
 
     [SyncVar]
     public float speed;
@@ -42,20 +43,23 @@ public class PlayerControl : Player
 
     private void FixedUpdate()
     {
-        Move();
-    }
-
-    private void Move()
-    {
-        bool isMoving = false;
         if (hasAuthority && isMoveable)
         {
             dir = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f), 1f);
             transform.position += dir * speed * Time.deltaTime;
             isMoving = dir.magnitude != 0f;
         }
+    }
 
-        if(isMoving)
+    private void Update()
+    {
+        Move();
+    }
+
+    private void Move()
+    {
+
+        if(isMoving && (hasAuthority && isMoveable))
         {
             animator.SetFloat("moveX", dir.x);
             animator.SetFloat("moveY", dir.y);
