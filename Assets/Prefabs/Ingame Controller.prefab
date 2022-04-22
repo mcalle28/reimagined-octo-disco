@@ -189,7 +189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   clientAuthority: 1
   animator: {fileID: 4886458304182748621}
 --- !u!114 &9003225282697281033
@@ -239,13 +239,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   playerName: 
   text: {fileID: 2320058011419815535}
   isMoveable: 1
   speed: 4.5
   cameraSize: 2.5
   animator: {fileID: 4886458304182748621}
+  rigidbody2d: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
   role: 0
 --- !u!1 &2356985290470626646
 GameObject:

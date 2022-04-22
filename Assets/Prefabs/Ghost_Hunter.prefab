@@ -324,13 +324,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0.05
   playerName: 
   text: {fileID: 1786293591660430174}
   isMoveable: 1
   speed: 6
   cameraSize: 2.5
   animator: {fileID: 5380692545231258390}
+  rigidbody2d: {fileID: 0}
+  dir: {x: 0, y: 0, z: 0}
   role: 1
 --- !u!114 &6015526533649995963
 MonoBehaviour:
@@ -345,7 +347,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.1
+  syncInterval: 0
   clientAuthority: 1
   animator: {fileID: 5380692545231258390}
 --- !u!114 &-3230492374599477100

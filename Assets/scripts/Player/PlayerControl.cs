@@ -12,25 +12,53 @@ public class PlayerControl : Player
     [SerializeField]
     private float cameraSize = 2.5f;
 
-    private Vector3 dir;
+
     public Animator animator;
+    public Rigidbody2D rigidbody2d;
+    public Vector3 dir;
 
     public virtual void Start()
     {
-        animator = GetComponent<Animator>();
+        animator = this.GetComponent<Animator>();
+        rigidbody2d = this.GetComponent<Rigidbody2D>();
         if (hasAuthority)
         {
             Camera cam = Camera.main;
             if (cam != null)
-            {
-                cam.transform.SetParent(transform);
-                cam.transform.localPosition = new Vector3(0f, 0f, -10f);
-                cam.orthographicSize = cameraSize;
-            }
+                SetCamera(cam);
         }
     }
 
-    public void SetCamera(Camera cam)
+    private void FixedUpdate()
+    {
+        if (hasAuthority)
+            rigidbody2d.MovePosition(rigidbody2d.position + new Vector2(dir.x, dir.y) * speed * Time.fixedDeltaTime);
+    }
+
+    private void Update()
+    {
+            AnimateMove();
+    }
+
+    private void AnimateMove()
+    {
+        bool isMoving = false;
+        if (hasAuthority && isMoveable )
+        {
+            dir.x = Input.GetAxisRaw("Horizontal");
+            dir.y = Input.GetAxisRaw("Vertical");
+            dir = dir.normalized;
+            isMoving = dir.magnitude != 0f;
+
+            if(dir.x != default)
+                animator.SetFloat("moveX", dir.x);
+            if(dir.y != default)
+                animator.SetFloat("moveY", dir.y);
+            animator.SetBool("moving", isMoving);
+        }
+    }
+
+    private void SetCamera(Camera cam)
     {
         if (hasAuthority)
         {
@@ -40,30 +68,4 @@ public class PlayerControl : Player
         }
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void Move()
-    {
-        bool isMoving = false;
-        if (hasAuthority && isMoveable)
-        {
-            dir = Vector3.ClampMagnitude(new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0f), 1f);
-            transform.position += dir * speed * Time.deltaTime;
-            isMoving = dir.magnitude != 0f;
-        }
-
-        if (isMoving)
-        {
-            animator.SetFloat("moveX", dir.x);
-            animator.SetFloat("moveY", dir.y);
-            animator.SetBool("moving", true);
-        }
-        else
-        {
-            animator.SetBool("moving", false);
-        }
-    }
 }
