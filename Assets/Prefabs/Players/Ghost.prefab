@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 9003225282697281033}
   - component: {fileID: 7697395404614406515}
   m_Layer: 18
-  m_Name: Ingame Controller
+  m_Name: Ghost
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

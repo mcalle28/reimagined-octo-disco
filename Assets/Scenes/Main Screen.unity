@@ -17668,10 +17668,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89722b5a47ee77b4ea26d03a5b7765e1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainScreen: {fileID: 432096470}
-  PanelStart: {fileID: 1506630386}
-  PanelStop: {fileID: 990947281}
-  PanelJoin: {fileID: 1405141343}
   buttonHost: {fileID: 1506630388}
   buttonClient: {fileID: 998265986}
   inputFieldAddress: {fileID: 1403897973}
@@ -18348,7 +18344,7 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 60
-  offlineScene: Assets/Scenes/lobby.unity
+  offlineScene: 
   onlineScene: Assets/Scenes/Room.unity
   transport: {fileID: 979048711}
   networkAddress: 3.210.170.248
@@ -18364,7 +18360,7 @@ MonoBehaviour:
   minPlayers: 1
   roomPlayerPrefab: {fileID: 1209983705962812294, guid: 94a29748269d547748765e8c5248e911, type: 3}
   RoomScene: Assets/Scenes/Room.unity
-  GameplayScene: Assets/Scenes/New Dungeon Level.unity
+  GameplayScene: Assets/Scenes/Game Levels/Hanging Corridor.unity
   _allPlayersReady: 0
   roomSlots: []
   clientIndex: 0

@@ -1,6 +1,5 @@
 using Mirror;
 using TMPro;
-using UnityEngine;
 
 public class Countdown : NetworkBehaviour
 {
@@ -11,7 +10,6 @@ public class Countdown : NetworkBehaviour
 
     private void Start()
     {
-        // Auto-Start
         IsRunning = true;
         sinceStarted= NetworkTime.time;
     }
@@ -27,7 +25,6 @@ public class Countdown : NetworkBehaviour
             }
             else
             {
-                // The timer ends
                 timeLeft = 0;
                 IsRunning = false;
             }
@@ -37,7 +34,6 @@ public class Countdown : NetworkBehaviour
 
     private void DisplayTime(double timeToDisplay)
     {
-        //timeToDisplay +=1;
         double minutes = (int)(timeToDisplay / 60);
         double seconds = (int)(timeToDisplay % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);

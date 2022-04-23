@@ -5,22 +5,13 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Scenes/Lobby.unity
+    path: Assets/Scenes/Main Screen.unity
     guid: 188c3ea7a49612f449bfab9884bbec16
-  - enabled: 0
-    path: Assets/Scenes/Dungeon Level.unity
-    guid: ceeac17d2f9e14c6996d5895e09238a8
-  - enabled: 0
-    path: Assets/Practice/MirrorPractice/Scene1.unity
-    guid: d631a180bccbdb248805d55b52d31bb2
   - enabled: 1
     path: Assets/Scenes/Room.unity
     guid: 9974a7f86b5984d0d8e6391b1f9ac7d2
   - enabled: 1
-    path: Assets/Scenes/New Dungeon Level.unity
+    path: Assets/Scenes/Game Levels/Hanging Corridor.unity
     guid: d3ed47a67aaebc540b5167ae576a08e3
   m_configObjects: {}
