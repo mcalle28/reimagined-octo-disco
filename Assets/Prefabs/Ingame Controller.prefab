@@ -213,7 +213,7 @@ MonoBehaviour:
   syncScale: 1
   interpolatePosition: 1
   interpolateRotation: 0
-  interpolateScale: 1
+  interpolateScale: 0
   bufferTimeMultiplier: 1
   bufferSizeLimit: 64
   catchupThreshold: 4
