@@ -19,8 +19,8 @@ public class PlayerControl : Player
 
     public virtual void Start()
     {
-        animator = this.GetComponent<Animator>();
-        rigidbody2d = this.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        rigidbody2d = GetComponent<Rigidbody2D>();
         if (hasAuthority)
         {
             Camera cam = Camera.main;
@@ -32,7 +32,20 @@ public class PlayerControl : Player
     private void FixedUpdate()
     {
         if (hasAuthority)
+        {
+            Vector3 newScale = transform.localScale;
+            if (dir.x < 0f && newScale.x > 0)
+            {
+                newScale.x *= -1;
+                transform.localScale = newScale;
+            }
+            else if (dir.x > 0f && newScale.x < 0){
+                newScale.x *= -1;
+                transform.localScale = newScale;
+
+            }
             rigidbody2d.MovePosition(rigidbody2d.position + new Vector2(dir.x, dir.y) * speed * Time.fixedDeltaTime);
+        }
     }
 
     private void Update()
@@ -42,18 +55,12 @@ public class PlayerControl : Player
 
     private void AnimateMove()
     {
-        bool isMoving = false;
         if (hasAuthority && isMoveable )
         {
             dir.x = Input.GetAxisRaw("Horizontal");
             dir.y = Input.GetAxisRaw("Vertical");
             dir = dir.normalized;
-            isMoving = dir.magnitude != 0f;
-
-            if(dir.x != default)
-                animator.SetFloat("moveX", dir.x);
-            if(dir.y != default)
-                animator.SetFloat("moveY", dir.y);
+            bool isMoving = dir.magnitude != 0f;
             animator.SetBool("moving", isMoving);
         }
     }

@@ -81,7 +81,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 18
-  m_Sprite: {fileID: -767735593606827729, guid: 122071b96f5d74624947a3888b9f21df, type: 3}
+  m_Sprite: {fileID: -1286064391, guid: f45e5a76336004b6a96af2f74382b635, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -189,7 +189,7 @@ Animator:
   m_GameObject: {fileID: 1381811890309459041}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 22100000, guid: d130f771eb44c44be95d328f25816fcb, type: 2}
+  m_Controller: {fileID: 22100000, guid: 43ba3a2997fcc4cd8b7223dfaf3002bc, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -233,10 +233,10 @@ MonoBehaviour:
   sendInterval: 0.05
   syncPosition: 1
   syncRotation: 0
-  syncScale: 0
+  syncScale: 1
   interpolatePosition: 1
   interpolateRotation: 0
-  interpolateScale: 0
+  interpolateScale: 1
   bufferTimeMultiplier: 1
   bufferSizeLimit: 64
   catchupThreshold: 6

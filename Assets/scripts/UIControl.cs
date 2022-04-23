@@ -40,12 +40,12 @@ public class UIControl : MonoBehaviour
 
     public void NameChangeCheck()
     {
-        PlayerSettings.playerName = inputFieldName.text;
+        GHPlayerSettings.playerName = inputFieldName.text;
     }
 
     public void HostNameChangeCheck()
     {
-        PlayerSettings.playerName = inputFieldHostName.text;
+        GHPlayerSettings.playerName = inputFieldHostName.text;
     }
 
     public void ButtonHost()

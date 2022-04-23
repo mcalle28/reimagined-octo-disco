@@ -4,7 +4,7 @@ using UnityEngine;
 using Mirror;
 using TMPro;
 
-public class PlayerSettings
+public class GHPlayerSettings
 {
     public static string playerName;
 }

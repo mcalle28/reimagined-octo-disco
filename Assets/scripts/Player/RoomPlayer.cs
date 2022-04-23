@@ -49,7 +49,7 @@ public class RoomPlayer : NetworkRoomPlayer {
         }
         if(isLocalPlayer)
         {
-            //CmdSetPlayerName(PlayerSettings.playerName);
+            //CmdSetPlayerName(GHPlayerSettings.playerName);
         }
     }
 
