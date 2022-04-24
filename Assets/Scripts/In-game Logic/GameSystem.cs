@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using PlayFab.Networking;
 
 public class GameSystem : NetworkBehaviour
 {
@@ -27,7 +28,7 @@ public class GameSystem : NetworkBehaviour
 
     private IEnumerator GameReady()
     {
-        var manager = NetworkManager.singleton as GHNetworkManager;
+        var manager = NetworkManager.singleton as UnityNetworkServer;
         while (manager.roomSlots.Count != players.Count)
         {
             yield return null;
