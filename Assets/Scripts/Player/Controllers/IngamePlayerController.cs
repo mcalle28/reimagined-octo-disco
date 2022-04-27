@@ -31,7 +31,6 @@ public class IngamePlayerController : PlayerControl
         playerName = roomPlayerName;
     }
 
-
     /*
     public void Update()
     {
