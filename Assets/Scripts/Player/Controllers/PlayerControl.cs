@@ -54,7 +54,7 @@ public class PlayerControl : NetworkBehaviour
         }
     }
 
-    private void Update()
+    public void Update()
     {
             AnimateMove();
     }

@@ -74,11 +74,11 @@ public class GameSystem : NetworkBehaviour
 
     public void SetHunterPlayer(NetworkConnectionToClient conn, GameObject hunterPrefab, GameObject oldPlayer)
     {
-        GameObject newHunter = Instantiate(hunterPrefab);
-        newHunter.transform.position = oldPlayer.transform.position;
-        NetworkServer.ReplacePlayerForConnection(conn, newHunter, true);
-
+        Vector3 originalPos = oldPlayer.transform.position;
         RemovePlayer(oldPlayer.GetComponent<IngamePlayerController>());
+        GameObject newHunter = Instantiate(hunterPrefab);
+        NetworkServer.ReplacePlayerForConnection(conn, newHunter, true);
+        newHunter.transform.position = originalPos;
         AddPlayer(newHunter.GetComponent<IngamePlayerController>());
     }
 }

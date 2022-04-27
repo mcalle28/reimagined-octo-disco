@@ -18347,12 +18347,12 @@ MonoBehaviour:
   offlineScene: 
   onlineScene: Assets/Scenes/Room.unity
   transport: {fileID: 979048711}
-  networkAddress: 3.210.170.248
+  networkAddress: 52.189.103.183
   maxConnections: 8
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1918464920058785152, guid: f53e9847e8f01402190a6fb3fccd5eeb, type: 3}
   autoCreatePlayer: 1
-  playerSpawnMethod: 0
+  playerSpawnMethod: 1
   spawnPrefabs:
   - {fileID: 1381811890309459041, guid: 6bb9eec4a940c41839920cb0bba80167, type: 3}
   - {fileID: 5380692545231258409, guid: dd0f9b99cf9ef044da45fab9046b1ea3, type: 3}
