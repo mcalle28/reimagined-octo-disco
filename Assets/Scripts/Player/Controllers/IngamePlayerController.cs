@@ -24,6 +24,15 @@ public class IngamePlayerController : PlayerControl
         GameSystem.Instance.AddPlayer(this);
     }
 
+
+    [Command]
+    private void CmdSetPlayerCharacter(string roomPlayerName)
+    {
+        playerName = roomPlayerName;
+    }
+
+
+    /*
     public void Update()
     {
         base.Update();
@@ -33,13 +42,8 @@ public class IngamePlayerController : PlayerControl
             {
                 DetectGhost();
             }
+            //animator.SetBool("capturing", false);
         }
-    }
-
-    [Command]
-    private void CmdSetPlayerCharacter(string roomPlayerName)
-    {
-        playerName = roomPlayerName;
     }
 
     private void DetectGhost()
@@ -50,7 +54,6 @@ public class IngamePlayerController : PlayerControl
                 Vector3.Distance(ghost.transform.position, transform.position) <= captureRange)
             {
                 CmdCatchGhost(ghost);
-                //animator.SetBool("capturing", false);
             }
         }
     }
@@ -78,4 +81,5 @@ public class IngamePlayerController : PlayerControl
         color.a = 150;
         target.gameObject.transform.GetComponent<SpriteRenderer>().color = color;
     }
+    */
 }
