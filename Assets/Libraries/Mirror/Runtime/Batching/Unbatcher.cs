@@ -14,7 +14,7 @@ namespace Mirror
     {
         // supporting adding multiple batches before GetNextMessage is called.
         // just in case.
-        Queue<NetworkWriterPooled> batches = new Queue<NetworkWriterPooled>();
+        Queue<PooledNetworkWriter> batches = new Queue<PooledNetworkWriter>();
 
         public int BatchesCount => batches.Count;
 
@@ -27,7 +27,7 @@ namespace Mirror
         double readerRemoteTimeStamp;
 
         // helper function to start reading a batch.
-        void StartReadingBatch(NetworkWriterPooled batch)
+        void StartReadingBatch(PooledNetworkWriter batch)
         {
             // point reader to it
             reader.SetBuffer(batch.ToArraySegment());
@@ -55,7 +55,7 @@ namespace Mirror
             // -> WriteBytes instead of WriteSegment because the latter
             //    would add a size header. we want to write directly.
             // -> will be returned to pool when sending!
-            NetworkWriterPooled writer = NetworkWriterPool.Get();
+            PooledNetworkWriter writer = NetworkWriterPool.GetWriter();
             writer.WriteBytes(batch.Array, batch.Offset, batch.Count);
 
             // first batch? then point reader there
@@ -111,15 +111,15 @@ namespace Mirror
             if (reader.Remaining == 0)
             {
                 // retire the batch
-                NetworkWriterPooled writer = batches.Dequeue();
-                NetworkWriterPool.Return(writer);
+                PooledNetworkWriter writer = batches.Dequeue();
+                NetworkWriterPool.Recycle(writer);
 
                 // do we have another batch?
                 if (batches.Count > 0)
                 {
                     // point reader to the next batch.
                     // we'll return the reader below.
-                    NetworkWriterPooled next = batches.Peek();
+                    PooledNetworkWriter next = batches.Peek();
                     StartReadingBatch(next);
                 }
                 // otherwise there's nothing more to read

@@ -11,7 +11,7 @@ namespace Mirror
         internal LocalConnectionToClient connectionToClient;
 
         // packet queue
-        internal readonly Queue<NetworkWriterPooled> queue = new Queue<NetworkWriterPooled>();
+        internal readonly Queue<PooledNetworkWriter> queue = new Queue<PooledNetworkWriter>();
 
         public override string address => "localhost";
 
@@ -33,14 +33,14 @@ namespace Mirror
             // OnTransportData assumes batching.
             // so let's make a batch with proper timestamp prefix.
             Batcher batcher = GetBatchForChannelId(channelId);
-            batcher.AddMessage(segment, NetworkTime.localTime);
+            batcher.AddMessage(segment);
 
             // flush it to the server's OnTransportData immediately.
             // local connection to server always invokes immediately.
-            using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+            using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
             {
                 // make a batch with our local time (double precision)
-                if (batcher.GetBatch(writer))
+                if (batcher.MakeNextBatch(writer, NetworkTime.localTime))
                 {
                     NetworkServer.OnTransportData(connectionId, writer.ToArraySegment(), channelId);
                 }
@@ -63,24 +63,24 @@ namespace Mirror
             while (queue.Count > 0)
             {
                 // call receive on queued writer's content, return to pool
-                NetworkWriterPooled writer = queue.Dequeue();
+                PooledNetworkWriter writer = queue.Dequeue();
                 ArraySegment<byte> message = writer.ToArraySegment();
 
                 // OnTransportData assumes a proper batch with timestamp etc.
                 // let's make a proper batch and pass it to OnTransportData.
                 Batcher batcher = GetBatchForChannelId(Channels.Reliable);
-                batcher.AddMessage(message, NetworkTime.localTime);
+                batcher.AddMessage(message);
 
-                using (NetworkWriterPooled batchWriter = NetworkWriterPool.Get())
+                using (PooledNetworkWriter batchWriter = NetworkWriterPool.GetWriter())
                 {
                     // make a batch with our local time (double precision)
-                    if (batcher.GetBatch(batchWriter))
+                    if (batcher.MakeNextBatch(batchWriter, NetworkTime.localTime))
                     {
                         NetworkClient.OnTransportData(batchWriter.ToArraySegment(), Channels.Reliable);
                     }
                 }
 
-                NetworkWriterPool.Return(writer);
+                NetworkWriterPool.Recycle(writer);
             }
 
             // should we still process a disconnected event?

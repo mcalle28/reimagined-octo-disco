@@ -21,7 +21,7 @@ namespace Mirror
             // => WriteBytes instead of WriteArraySegment because the latter
             //    includes a 4 bytes header. we just want to write raw.
             //Debug.Log($"Enqueue {BitConverter.ToString(segment.Array, segment.Offset, segment.Count)}");
-            NetworkWriterPooled writer = NetworkWriterPool.Get();
+            PooledNetworkWriter writer = NetworkWriterPool.GetWriter();
             writer.WriteBytes(segment.Array, segment.Offset, segment.Count);
             connectionToServer.queue.Enqueue(writer);
         }

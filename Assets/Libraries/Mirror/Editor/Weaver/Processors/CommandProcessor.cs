@@ -38,7 +38,7 @@ namespace Mirror.Weaver
             NetworkBehaviourProcessor.WriteSetupLocals(worker, weaverTypes);
 
             // NetworkWriter writer = new NetworkWriter();
-            NetworkBehaviourProcessor.WriteGetWriter(worker, weaverTypes);
+            NetworkBehaviourProcessor.WriteCreateWriter(worker, weaverTypes);
 
             // write all the arguments that the user passed to the Cmd call
             if (!NetworkBehaviourProcessor.WriteArguments(worker, writers, Log, md, RemoteCallType.Command, ref WeavingFailed))
@@ -59,7 +59,7 @@ namespace Mirror.Weaver
             worker.Emit(requiresAuthority ? OpCodes.Ldc_I4_1 : OpCodes.Ldc_I4_0);
             worker.Emit(OpCodes.Call, weaverTypes.sendCommandInternal);
 
-            NetworkBehaviourProcessor.WriteReturnWriter(worker, weaverTypes);
+            NetworkBehaviourProcessor.WriteRecycleWriter(worker, weaverTypes);
 
             worker.Emit(OpCodes.Ret);
             return cmd;

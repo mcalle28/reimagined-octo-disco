@@ -137,21 +137,21 @@ namespace Mirror.Weaver
         public static void WriteSetupLocals(ILProcessor worker, WeaverTypes weaverTypes)
         {
             worker.Body.InitLocals = true;
-            worker.Body.Variables.Add(new VariableDefinition(weaverTypes.Import<NetworkWriterPooled>()));
+            worker.Body.Variables.Add(new VariableDefinition(weaverTypes.Import<PooledNetworkWriter>()));
         }
 
-        public static void WriteGetWriter(ILProcessor worker, WeaverTypes weaverTypes)
+        public static void WriteCreateWriter(ILProcessor worker, WeaverTypes weaverTypes)
         {
             // create writer
-            worker.Emit(OpCodes.Call, weaverTypes.GetWriterReference);
+            worker.Emit(OpCodes.Call, weaverTypes.GetPooledWriterReference);
             worker.Emit(OpCodes.Stloc_0);
         }
 
-        public static void WriteReturnWriter(ILProcessor worker, WeaverTypes weaverTypes)
+        public static void WriteRecycleWriter(ILProcessor worker, WeaverTypes weaverTypes)
         {
             // NetworkWriterPool.Recycle(writer);
             worker.Emit(OpCodes.Ldloc_0);
-            worker.Emit(OpCodes.Call, weaverTypes.ReturnWriterReference);
+            worker.Emit(OpCodes.Call, weaverTypes.RecycleWriterReference);
         }
 
         public static bool WriteArguments(ILProcessor worker, Writers writers, Logger Log, MethodDefinition method, RemoteCallType callType, ref bool WeavingFailed)

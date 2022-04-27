@@ -175,7 +175,7 @@ namespace Mirror.Discovery
 
             UdpReceiveResult udpReceiveResult = await udpClient.ReceiveAsync();
 
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(udpReceiveResult.Buffer))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(udpReceiveResult.Buffer))
             {
                 long handshake = networkReader.ReadLong();
                 if (handshake != secretHandshake)
@@ -206,7 +206,7 @@ namespace Mirror.Discovery
             if (info == null)
                 return;
 
-            using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+            using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
             {
                 try
                 {
@@ -369,7 +369,7 @@ namespace Mirror.Discovery
 
             IPEndPoint endPoint = new IPEndPoint(IPAddress.Broadcast, serverBroadcastListenPort);
 
-            using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+            using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
             {
                 writer.WriteLong(secretHandshake);
 
@@ -406,7 +406,7 @@ namespace Mirror.Discovery
 
             UdpReceiveResult udpReceiveResult = await udpClient.ReceiveAsync();
 
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(udpReceiveResult.Buffer))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(udpReceiveResult.Buffer))
             {
                 if (networkReader.ReadLong() != secretHandshake)
                     return;

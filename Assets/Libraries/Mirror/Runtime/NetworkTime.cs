@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 #if !UNITY_2020_3_OR_NEWER
 using Stopwatch = System.Diagnostics.Stopwatch;
@@ -27,11 +26,7 @@ namespace Mirror
 
         /// <summary>Returns double precision clock time _in this system_, unaffected by the network.</summary>
 #if UNITY_2020_3_OR_NEWER
-        public static double localTime
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => Time.timeAsDouble;
-        }
+        public static double localTime => Time.timeAsDouble;
 #else
         // need stopwatch for older Unity versions, but it's quite slow.
         // CAREFUL: unlike Time.time, this is not a FRAME time.
@@ -53,11 +48,7 @@ namespace Mirror
         // and you cast down to float,  then the time will jump in 0.4s intervals.
         //
         // TODO consider using Unbatcher's remoteTime for NetworkTime
-        public static double time
-        {
-            [MethodImpl(MethodImplOptions.AggressiveInlining)]
-            get => localTime - _offset.Value;
-        }
+        public static double time => localTime - _offset.Value;
 
         /// <summary>Time measurement variance. The higher, the less accurate the time is.</summary>
         // TODO does this need to be public? user should only need NetworkTime.time

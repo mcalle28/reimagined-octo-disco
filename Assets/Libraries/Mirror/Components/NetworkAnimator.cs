@@ -106,7 +106,7 @@ namespace Mirror
                     continue;
                 }
 
-                using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+                using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
                 {
                     WriteParameters(writer);
                     SendAnimationMessage(stateHash, normalizedTime, i, layerWeight[i], writer.ToArray());
@@ -193,7 +193,7 @@ namespace Mirror
             {
                 nextSendTime = now + syncInterval;
 
-                using (NetworkWriterPooled writer = NetworkWriterPool.Get())
+                using (PooledNetworkWriter writer = NetworkWriterPool.GetWriter())
                 {
                     if (WriteParameters(writer))
                         SendAnimationParametersMessage(writer.ToArray());
@@ -527,7 +527,7 @@ namespace Mirror
             //Debug.Log($"OnAnimationMessage for netId {netId}");
 
             // handle and broadcast
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(parameters))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(parameters))
             {
                 HandleAnimMsg(stateHash, normalizedTime, layerId, weight, networkReader);
                 RpcOnAnimationClientMessage(stateHash, normalizedTime, layerId, weight, parameters);
@@ -542,7 +542,7 @@ namespace Mirror
                 return;
 
             // handle and broadcast
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(parameters))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(parameters))
             {
                 HandleAnimParamsMsg(networkReader);
                 RpcOnAnimationParametersClientMessage(parameters);
@@ -600,14 +600,14 @@ namespace Mirror
         [ClientRpc]
         void RpcOnAnimationClientMessage(int stateHash, float normalizedTime, int layerId, float weight, byte[] parameters)
         {
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(parameters))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(parameters))
                 HandleAnimMsg(stateHash, normalizedTime, layerId, weight, networkReader);
         }
 
         [ClientRpc]
         void RpcOnAnimationParametersClientMessage(byte[] parameters)
         {
-            using (NetworkReaderPooled networkReader = NetworkReaderPool.Get(parameters))
+            using (PooledNetworkReader networkReader = NetworkReaderPool.GetReader(parameters))
                 HandleAnimParamsMsg(networkReader);
         }
 

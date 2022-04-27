@@ -215,40 +215,39 @@ namespace Mirror
             if (netId == 0)
                 return null;
 
-            // NOTE: a netId not being in spawned is common.
+            // look in server spawned
+            if (NetworkServer.active &&
+                NetworkServer.spawned.TryGetValue(netId, out NetworkIdentity serverIdentity))
+                return serverIdentity;
+
+            // look in client spawned
+            if (NetworkClient.active &&
+                NetworkClient.spawned.TryGetValue(netId, out NetworkIdentity clientIdentity))
+                return clientIdentity;
+
+            // a netId not being in spawned is common.
             // for example, "[SyncVar] NetworkIdentity target" netId would not
             // be known on client if the monster walks out of proximity for a
             // moment. no need to log any error or warning here.
-            return Utils.GetSpawnedInServerOrClient(netId);
+            return null;
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static NetworkBehaviour ReadNetworkBehaviour(this NetworkReader reader)
         {
-            // read netId first.
-            //
-            // IMPORTANT: if netId != 0, writer always writes componentIndex.
-            //   reusing ReadNetworkIdentity() might return a null NetworkIdentity
-            //   even if netId was != 0 but the identity disappeared on the client,
-            //   resulting in unequal amounts of data being written / read.
-            //   https://github.com/vis2k/Mirror/issues/2972
-            uint netId = reader.ReadUInt();
-            if (netId == 0)
-                return null;
+            // reuse ReadNetworkIdentity, get the component at index
+            NetworkIdentity identity = ReadNetworkIdentity(reader);
 
-            // read component index in any case, BEFORE searching the spawned
-            // NetworkIdentity by netId.
-            byte componentIndex = reader.ReadByte();
-
-            // NOTE: a netId not being in spawned is common.
-            // for example, "[SyncVar] NetworkIdentity target" netId would not
+            // a netId not being in spawned is common.
+            // for example, "[SyncVar] NetworkBehaviour target" netId would not
             // be known on client if the monster walks out of proximity for a
             // moment. no need to log any error or warning here.
-            NetworkIdentity identity = Utils.GetSpawnedInServerOrClient(netId);
+            if (identity == null)
+                return null;
 
-            return identity != null
-                   ? identity.NetworkBehaviours[componentIndex]
-                   : null;
+            // if identity isn't null, then index is also sent to read before returning
+            byte componentIndex = reader.ReadByte();
+            return identity.NetworkBehaviours[componentIndex];
         }
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]

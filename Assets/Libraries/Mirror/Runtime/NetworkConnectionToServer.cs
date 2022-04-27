@@ -1,5 +1,4 @@
 using System;
-using System.Runtime.CompilerServices;
 
 namespace Mirror
 {
@@ -8,7 +7,6 @@ namespace Mirror
         public override string address => "";
 
         // Send stage three: hand off to transport
-        [MethodImpl(MethodImplOptions.AggressiveInlining)]
         protected override void SendToTransport(ArraySegment<byte> segment, int channelId = Channels.Reliable) =>
             Transport.activeTransport.ClientSend(segment, channelId);
 
