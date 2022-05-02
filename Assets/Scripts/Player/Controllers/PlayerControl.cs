@@ -35,7 +35,7 @@ public class PlayerControl : NetworkBehaviour
         }
     }
 
-    private void FixedUpdate()
+    protected void FixedUpdate()
     {
         if (hasAuthority)
         {
@@ -54,7 +54,7 @@ public class PlayerControl : NetworkBehaviour
         }
     }
 
-    public void Update()
+    protected void Update()
     {
             AnimateMove();
     }

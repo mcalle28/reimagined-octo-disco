@@ -249,6 +249,9 @@ MonoBehaviour:
   rigidbody2d: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
   role: 0
+  isCaptured: 0
+  renderer: {fileID: 1863359085723508455}
+  playerFinder: {fileID: 0}
 --- !u!1 &2356985290470626646
 GameObject:
   m_ObjectHideFlags: 0

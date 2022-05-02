@@ -18344,7 +18344,7 @@ MonoBehaviour:
   runInBackground: 1
   autoStartServerBuild: 1
   serverTickRate: 60
-  offlineScene: 
+  offlineScene: Assets/Scenes/Main Screen.unity
   onlineScene: Assets/Scenes/Room.unity
   transport: {fileID: 979048711}
   networkAddress: 52.189.103.183

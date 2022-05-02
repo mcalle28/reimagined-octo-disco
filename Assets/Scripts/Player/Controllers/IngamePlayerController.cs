@@ -9,7 +9,11 @@ public class IngamePlayerController : PlayerControl
     [SyncVar]
     public bool isCaptured = false;
 
-    private float captureRange = 0.4f;
+    [SerializeField]
+    private SpriteRenderer renderer;
+
+    [SerializeField]
+    private PlayerFinder playerFinder;
 
     public override void Start()
     {
@@ -31,54 +35,73 @@ public class IngamePlayerController : PlayerControl
         playerName = roomPlayerName;
     }
 
-    /*
-    public void Update()
-    {
-        base.Update();
-        if (hasAuthority)
-        {
-            if(role == Role.Hunter)
-            {
-                DetectGhost();
-            }
-            //animator.SetBool("capturing", false);
-        }
-    }
-
-    private void DetectGhost()
-    {
-        foreach (IngamePlayerController ghost in GameSystem.Instance.GetPlayerList())
-        {
-            if (ghost.role == Role.Ghost && ghost.isCaptured == false &&
-                Vector3.Distance(ghost.transform.position, transform.position) <= captureRange)
-            {
-                CmdCatchGhost(ghost);
-            }
-        }
-    }
-
     [ClientRpc]
     public void RpcTeleport(Vector3 position)
     {
         transform.position = position;
     }
 
-    [Command]
-    private void CmdCatchGhost(IngamePlayerController target)
+    [ClientRpc]
+    public void RpcAnimateCapture()
     {
-        RpcTeleport(target.gameObject.transform.position);
-        animator.SetBool("capturing", true);
-        RpcGetCaught(target);
+        animator.Play("capturing");
+    }
+
+
+    protected void FixedUpdate()
+    {
+        base.FixedUpdate();
+        if (hasAuthority)
+        {
+            if (role == Role.Hunter)
+            {
+                DetectGhost();
+            }
+        }
+    }
+
+    private void DetectGhost()
+    {
+        if(playerFinder.targets.Count > 0)
+        {
+            CmdCatchGhost(playerFinder.GetFirstTarget().netId);
+        }
+    }
+
+    [Command]
+    private void CmdCatchGhost(uint targetNetId)
+    {
+        IngamePlayerController target = null;
+        foreach(var player in GameSystem.Instance.GetPlayerList())
+        {
+            if(player.netId == targetNetId)
+            {
+                target = player;
+            }
+        }
+
+        if(target != null && !target.isCaptured)
+        {
+            RpcTeleport(target.transform.position);
+            RpcAnimateCapture();
+            target.RpcGetCaught();
+        }
     }
 
     [ClientRpc]
-    private void RpcGetCaught(IngamePlayerController target)
+    private void RpcGetCaught()
     {
-        target.isCaptured = true;
-        target.gameObject.transform.GetComponent<Collider2D>().isTrigger = false;
-        Color color = target.gameObject.transform.GetComponent<SpriteRenderer>().color;
-        color.a = 150;
-        target.gameObject.transform.GetComponent<SpriteRenderer>().color = color;
+        if (hasAuthority)
+        {
+            isCaptured = true;
+            int WispLayer = LayerMask.NameToLayer("Wisp");
+            gameObject.layer = WispLayer;
+            renderer.color = new Color(1f, 1f, 1f, .1f);
+        }
+        else {
+            renderer.color = new Color(1f, 1f, 1f, 0);
+        }
     }
-    */
+
+
 }
