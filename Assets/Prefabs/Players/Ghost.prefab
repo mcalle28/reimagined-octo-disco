@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.05
+  syncInterval: 0.1
   playerName: 
   text: {fileID: 2320058011419815535}
   isMoveable: 1

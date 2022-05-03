@@ -20,13 +20,14 @@ public class Countdown : NetworkBehaviour
         {
             if (timeLeft > 0)
             {
-               timeLeft = 120-(NetworkTime.time-sinceStarted);
+               timeLeft = 20-(NetworkTime.time-sinceStarted);
                DisplayTime(timeLeft);
             }
             else
             {
                 timeLeft = 0;
                 IsRunning = false;
+                if(isServer) GameSystem.Instance.RpcCheckGhostWinCon();
             }
         }
 

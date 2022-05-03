@@ -429,7 +429,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
-  syncInterval: 0.05
+  syncInterval: 0.01
   clientAuthority: 1
   sendInterval: 0.05
   syncPosition: 1

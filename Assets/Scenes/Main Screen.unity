@@ -18347,7 +18347,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/Main Screen.unity
   onlineScene: Assets/Scenes/Room.unity
   transport: {fileID: 979048711}
-  networkAddress: 52.189.103.183
+  networkAddress: localhost
   maxConnections: 8
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1918464920058785152, guid: f53e9847e8f01402190a6fb3fccd5eeb, type: 3}
@@ -18991,9 +18991,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Join
-
-'
+  m_text: Join
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 2284d4356d69d4cd1b463cbb3248165e, type: 2}
   m_sharedMaterial: {fileID: 6930670707008079461, guid: 2284d4356d69d4cd1b463cbb3248165e, type: 2}

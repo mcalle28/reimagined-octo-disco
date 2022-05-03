@@ -2,12 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Mirror;
+using TMPro;
 
 public class GameSystem : NetworkBehaviour
 {
     public static GameSystem Instance;
 
     private List<IngamePlayerController> players = new List<IngamePlayerController>();
+
+    [SerializeField]
+    private GameObject hunterSpawnPoint;
+
+    [SerializeField]
+    private TMP_Text victory_text;
 
     public void AddPlayer(IngamePlayerController player)
     {
@@ -74,12 +81,52 @@ public class GameSystem : NetworkBehaviour
 
     public void SetHunterPlayer(NetworkConnectionToClient conn, GameObject hunterPrefab, GameObject oldPlayer)
     {
-        Vector3 originalPos = oldPlayer.transform.position;
-        oldPlayer.transform.position = new Vector3(0, 0, 0);
         RemovePlayer(oldPlayer.GetComponent<IngamePlayerController>());
-        GameObject newHunter = Instantiate(hunterPrefab, originalPos, oldPlayer.transform.rotation);
+        GameObject newHunter = Instantiate(hunterPrefab, hunterSpawnPoint.transform.position, hunterSpawnPoint.transform.rotation);
         NetworkServer.ReplacePlayerForConnection(conn, newHunter, true);
-        newHunter.GetComponent<IngamePlayerController>().RpcTeleport(originalPos);
         AddPlayer(newHunter.GetComponent<IngamePlayerController>());
+    }
+
+    [ClientRpc]
+    public void RpcCheckHunterWinCon(IngamePlayerController newTarget)
+    {
+        var manager = NetworkManager.singleton as GHNetworkManager;
+        int ghostCount = players.Count - manager.hunterCount;
+
+        int captured = 0;
+
+        foreach (IngamePlayerController player in players)
+        {
+            if (player.role == Role.Ghost && player.isCaptured) {
+                captured++;
+            } else if ((newTarget.netId == player.netId) && !player.isCaptured){
+                player.isCaptured = true;
+                captured++;
+            }
+        }
+
+        if (captured == ghostCount)
+        {
+            victory_text.SetText("Hunters Win!!");
+        }
+    }
+
+    [ClientRpc]
+    public void RpcCheckGhostWinCon()
+    {
+        var manager = NetworkManager.singleton as GHNetworkManager;
+        int ghostCount = players.Count - manager.hunterCount;
+
+        int captured = 0;
+
+        foreach (IngamePlayerController player in players)
+        {
+            if (player.role == Role.Ghost && player.isCaptured) captured++;
+        }
+
+        if (captured != ghostCount)
+        {
+            victory_text.SetText("Ghosts Win!!");
+        }
     }
 }

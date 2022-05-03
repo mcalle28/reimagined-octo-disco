@@ -28,7 +28,6 @@ public class IngamePlayerController : PlayerControl
         GameSystem.Instance.AddPlayer(this);
     }
 
-
     [Command]
     private void CmdSetPlayerCharacter(string roomPlayerName)
     {
@@ -84,7 +83,9 @@ public class IngamePlayerController : PlayerControl
         {
             RpcTeleport(target.transform.position);
             RpcAnimateCapture();
+            target.isCaptured = true;
             target.RpcGetCaught();
+            GameSystem.Instance.RpcCheckHunterWinCon(target);
         }
     }
 
@@ -93,7 +94,6 @@ public class IngamePlayerController : PlayerControl
     {
         if (hasAuthority)
         {
-            isCaptured = true;
             int WispLayer = LayerMask.NameToLayer("Wisp");
             gameObject.layer = WispLayer;
             renderer.color = new Color(1f, 1f, 1f, .1f);
@@ -102,6 +102,5 @@ public class IngamePlayerController : PlayerControl
             renderer.color = new Color(1f, 1f, 1f, 0);
         }
     }
-
 
 }
