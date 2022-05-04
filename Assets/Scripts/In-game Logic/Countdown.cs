@@ -3,7 +3,7 @@ using TMPro;
 
 public class Countdown : NetworkBehaviour
 {
-    public double timeLeft = 120;
+    public double timeLeft = 180;
     public TMP_Text timerText;
     public bool IsRunning = false;
     private double sinceStarted = 0;
@@ -20,7 +20,7 @@ public class Countdown : NetworkBehaviour
         {
             if (timeLeft > 0)
             {
-               timeLeft = 20-(NetworkTime.time-sinceStarted);
+               timeLeft = 180-(NetworkTime.time-sinceStarted);
                DisplayTime(timeLeft);
             }
             else

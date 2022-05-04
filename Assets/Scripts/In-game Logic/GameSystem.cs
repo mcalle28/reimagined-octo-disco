@@ -127,7 +127,7 @@ public class GameSystem : NetworkBehaviour
 
         if (captured != ghostCount)
         {
-            victory_text.SetText("Ghosts Win!!");
+            victory_text.SetText("Time's Up!");
         }
     }
 }

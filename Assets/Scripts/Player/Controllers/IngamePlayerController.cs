@@ -97,6 +97,7 @@ public class IngamePlayerController : PlayerControl
             int WispLayer = LayerMask.NameToLayer("Wisp");
             gameObject.layer = WispLayer;
             renderer.color = new Color(1f, 1f, 1f, .1f);
+            animator.SetBool("captured", true);
         }
         else {
             renderer.color = new Color(1f, 1f, 1f, 0);
