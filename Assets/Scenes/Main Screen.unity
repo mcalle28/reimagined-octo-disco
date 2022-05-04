@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -623,7 +623,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &97357870
 RectTransform:
   m_ObjectHideFlags: 0
@@ -961,7 +961,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &247293662
 RectTransform:
   m_ObjectHideFlags: 0
@@ -18318,7 +18318,7 @@ MonoBehaviour:
   offlineScene: Assets/Scenes/Main Screen.unity
   onlineScene: Assets/Scenes/Room.unity
   transport: {fileID: 979048715}
-  networkAddress: localhost
+  networkAddress: 3.210.170.248
   maxConnections: 8
   authenticator: {fileID: 0}
   playerPrefab: {fileID: 1918464920058785152, guid: f53e9847e8f01402190a6fb3fccd5eeb, type: 3}
@@ -19081,7 +19081,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1204723115
 RectTransform:
   m_ObjectHideFlags: 0
