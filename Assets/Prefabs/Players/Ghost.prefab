@@ -257,7 +257,7 @@ MonoBehaviour:
   playerName: 
   text: {fileID: 2320058011419815535}
   isMoveable: 1
-  speed: 4.5
+  speed: 4.25
   cameraSize: 2.5
   animator: {fileID: 4886458304182748621}
   rigidbody2d: {fileID: 0}
