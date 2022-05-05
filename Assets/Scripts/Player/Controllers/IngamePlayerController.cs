@@ -24,12 +24,20 @@ public class IngamePlayerController : PlayerControl
     {
         base.Start();
 
-        if(hasAuthority && role == Role.Hunter)
+        if(hasAuthority)
         {
             v = FindObjectOfType<Volume>();
             v.profile.TryGet(out vg);
-            vg.intensity.value = 0.6f;
-            vg.smoothness.value = 0.6f;
+            if (role == Role.Hunter)
+            {
+                vg.intensity.value = 0.6f;
+                vg.smoothness.value = 0.6f;
+            }
+            else if (role == Role.Ghost)
+            {
+                vg.active = false;
+            }
+
         }
         GameSystem.Instance.AddPlayer(this);
     }

@@ -256,8 +256,8 @@ MonoBehaviour:
   syncInterval: 0.01
   text: {fileID: 2320058011419815535}
   isMoveable: 1
-  speed: 4.25
-  cameraSize: 3.2
+  speed: 4.5
+  cameraSize: 3.4
   animator: {fileID: 4886458304182748621}
   rigidbody2d: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
