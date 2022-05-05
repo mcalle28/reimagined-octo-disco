@@ -23,14 +23,6 @@ public class RoomPlayer : NetworkRoomPlayer {
         }
     }
 
-    /*
-    [Command]
-    public void CmdSetPlayerName(string name)
-    {
-        playerName = name;
-        lobbyPlayerCharacter.playerName = name;
-    }*/
-
     [SyncVar]
     public string playerName;
 
@@ -43,10 +35,6 @@ public class RoomPlayer : NetworkRoomPlayer {
         if(isServer)
         {
             spawnLobbyPlayer();
-        }
-        if(isLocalPlayer)
-        {
-            //CmdSetPlayerName(LocalStore.playerName);
         }
     }
 

@@ -4,10 +4,6 @@ using TMPro;
 
 public class PlayerControl : NetworkBehaviour
 {
-
-    [SyncVar(hook = nameof(SetPlayerName_Hook))]
-    public string playerName;
-
     [SerializeField]
     private TMP_Text text;
 
@@ -17,7 +13,7 @@ public class PlayerControl : NetworkBehaviour
     public float speed;
 
     [SerializeField]
-    private float cameraSize = 2.5f;
+    private float cameraSize = 3f;
 
     public Animator animator;
     public Rigidbody2D rigidbody2d;
@@ -57,11 +53,6 @@ public class PlayerControl : NetworkBehaviour
     protected void Update()
     {
             AnimateMove();
-    }
-
-    public void SetPlayerName_Hook(string _, string value)
-    {
-        text.text = value;
     }
 
     private void AnimateMove()

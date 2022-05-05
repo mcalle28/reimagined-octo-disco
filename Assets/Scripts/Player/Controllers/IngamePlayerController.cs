@@ -1,5 +1,7 @@
 using Mirror;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.Rendering.Universal;
 
 public class IngamePlayerController : PlayerControl
 {
@@ -15,23 +17,21 @@ public class IngamePlayerController : PlayerControl
     [SerializeField]
     private PlayerFinder playerFinder;
 
+    private Volume v;
+    private Vignette vg;
+
     public override void Start()
     {
         base.Start();
 
-        if (hasAuthority)
+        if(hasAuthority && role == Role.Hunter)
         {
-            var myRoomPlayer = RoomPlayer.MyRoomPlayer;
-
-            CmdSetPlayerCharacter(myRoomPlayer.playerName);
+            v = FindObjectOfType<Volume>();
+            v.profile.TryGet(out vg);
+            vg.intensity.value = 0.6f;
+            vg.smoothness.value = 0.6f;
         }
         GameSystem.Instance.AddPlayer(this);
-    }
-
-    [Command]
-    private void CmdSetPlayerCharacter(string roomPlayerName)
-    {
-        playerName = roomPlayerName;
     }
 
     [ClientRpc]
@@ -96,7 +96,6 @@ public class IngamePlayerController : PlayerControl
         {
             int WispLayer = LayerMask.NameToLayer("Wisp");
             gameObject.layer = WispLayer;
-            renderer.color = new Color(1f, 1f, 1f, .1f);
             animator.SetBool("captured", true);
         }
         else {

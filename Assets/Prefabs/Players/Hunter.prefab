@@ -402,11 +402,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.01
-  playerName: 
   text: {fileID: 1786293591660430174}
   isMoveable: 1
   speed: 5
-  cameraSize: 2.5
+  cameraSize: 3
   animator: {fileID: 5380692545231258390}
   rigidbody2d: {fileID: 0}
   dir: {x: 0, y: 0, z: 0}
