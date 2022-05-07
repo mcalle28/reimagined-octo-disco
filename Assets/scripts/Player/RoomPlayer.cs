@@ -26,6 +26,9 @@ public class RoomPlayer : NetworkRoomPlayer {
     [SyncVar]
     public string playerName;
 
+    [SyncVar]
+    public Role role;
+
     public RoomPlayerController lobbyPlayerCharacter;
 
     public void Start()

@@ -5,13 +5,12 @@ public class Countdown : NetworkBehaviour
 {
     public double timeLeft = 180;
     public TMP_Text timerText;
-    public bool IsRunning, BackToRoom;
+    public bool IsRunning;
     private double sinceStarted, totalTime;
 
     private void Start()
     {
         IsRunning = true;
-        BackToRoom = false;
         sinceStarted= NetworkTime.time;
         totalTime = timeLeft;
     }
@@ -29,23 +28,9 @@ public class Countdown : NetworkBehaviour
             {
                 timeLeft = 0;
                 IsRunning = false;
-                BackToRoom = true;
                 if(isServer) GameSystem.Instance.RpcCheckGhostWinCon();
             }
         }
-        else if (BackToRoom)
-        {
-            if(timeLeft > - 10)
-            {
-                timeLeft = 0 - (NetworkTime.time - sinceStarted - totalTime);
-            }
-            else
-            {
-                ChangeToRoom();
-                BackToRoom = false;
-            }
-        }
-
     }
 
     private void DisplayTime(double timeToDisplay)
@@ -53,12 +38,6 @@ public class Countdown : NetworkBehaviour
         double minutes = (int)(timeToDisplay / 60);
         double seconds = (int)(timeToDisplay % 60);
         timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-    }
-
-    private void ChangeToRoom()
-    {
-        var manager = NetworkManager.singleton as GHNetworkManager;
-        if (isServer) manager.ServerChangeScene(manager.RoomScene);
     }
 }
 

@@ -5,7 +5,7 @@ using Mirror;
 
 public class RoomPlayerController : PlayerControl
 {
-   [SyncVar (hook = nameof(SetOwnerNetId_Hook))]
+    [SyncVar (hook = nameof(SetOwnerNetId_Hook))]
     public uint ownerNetId;
 
     public void SetOwnerNetId_Hook(uint _, uint newOwnerId)

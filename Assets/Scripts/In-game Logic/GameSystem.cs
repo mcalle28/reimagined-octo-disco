@@ -6,16 +6,10 @@ using TMPro;
 
 public class GameSystem : NetworkBehaviour
 {
-    [SyncVar]
-    public int ghostCount = 0;
-
     [SerializeField]
     public static GameSystem Instance;
 
     private readonly List<IngamePlayerController> players = new List<IngamePlayerController>();
-
-    [SerializeField]
-    private GameObject hunterSpawnPoint;
 
     [SerializeField]
     private TMP_Text victory_text;
@@ -24,7 +18,6 @@ public class GameSystem : NetworkBehaviour
     {
         if (!players.Contains(player))
         {
-            ghostCount++;
             players.Add(player);
         }
     }
@@ -39,32 +32,6 @@ public class GameSystem : NetworkBehaviour
 
     private IEnumerator GameReady()
     {
-        var manager = NetworkManager.singleton as GHNetworkManager;
-        while (manager.roomSlots.Count != players.Count)
-        {
-            yield return null;
-        }
-        for (int i = 0; i < manager.hunterCount; i++)
-        {
-            var player = players[Random.Range(0, players.Count)];
-            if (player.role != Role.Hunter)
-            {
-                ghostCount--;
-                ghostCount--;
-                NetworkIdentity hunterNetIdentity = player.GetComponent<NetworkIdentity>();
-                GameObject hunterPrefab = manager.spawnPrefabs[1];
-
-                NetworkConnectionToClient conn = hunterNetIdentity.connectionToClient;
-
-                GameObject oldPlayer = conn.identity.gameObject;
-                SetHunterPlayer(conn, hunterPrefab, oldPlayer);
-                yield return new WaitForSeconds(0.005f);
-                NetworkServer.Destroy(oldPlayer);
-            } else
-            {
-                i--;
-            }
-        }
         yield return new WaitForSeconds(1f);
     }
 
@@ -86,18 +53,12 @@ public class GameSystem : NetworkBehaviour
         }
     }
 
-    public void SetHunterPlayer(NetworkConnectionToClient conn, GameObject hunterPrefab, GameObject oldPlayer)
-    {
-            RemovePlayer(oldPlayer.GetComponent<IngamePlayerController>());
-            GameObject newHunter = Instantiate(hunterPrefab, hunterSpawnPoint.transform.position, hunterSpawnPoint.transform.rotation);
-            NetworkServer.ReplacePlayerForConnection(conn, newHunter, true);
-            AddPlayer(newHunter.GetComponent<IngamePlayerController>());
-    }
-
     [ClientRpc]
     public void RpcCheckHunterWinCon(IngamePlayerController newTarget)
     {
+        var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
+        int ghostCount = players.Count - manager.hunterCount;
 
         foreach (IngamePlayerController player in players)
         {
@@ -112,13 +73,16 @@ public class GameSystem : NetworkBehaviour
         if (captured == ghostCount)
         {
             victory_text.SetText("Hunters Win!!");
+            ChangeToRoom();
         }
     }
 
     [ClientRpc]
     public void RpcCheckGhostWinCon()
     {
+        var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
+        int ghostCount = players.Count - manager.hunterCount;
 
         foreach (IngamePlayerController player in players)
         {
@@ -128,6 +92,20 @@ public class GameSystem : NetworkBehaviour
         if (captured != ghostCount)
         {
             victory_text.SetText("Ghosts Win!");
+            ChangeToRoom();
         }
+    }
+
+    private void ChangeToRoom()
+    {
+        StartCoroutine(ReturnToRoomWait());
+
+    }
+
+    private IEnumerator ReturnToRoomWait()
+    {
+            yield return new WaitForSeconds(10f);
+            var manager = NetworkManager.singleton as GHNetworkManager;
+            if (isServer) manager.ServerChangeScene(manager.RoomScene);
     }
 }
