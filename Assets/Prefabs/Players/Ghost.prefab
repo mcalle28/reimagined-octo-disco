@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 9003225282697281033}
   - component: {fileID: 7697395404614406515}
   - component: {fileID: -5198638808459441584}
+  - component: {fileID: -7022148229940524703}
   m_Layer: 18
   m_Name: Ghost
   m_TagString: Untagged
@@ -281,8 +282,8 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 0.5
   m_Pitch: 1
-  Loop: 1
-  Mute: 0
+  Loop: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
@@ -363,6 +364,14 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!81 &-7022148229940524703
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1918464920058785152}
+  m_Enabled: 1
 --- !u!1 &2356985290470626646
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +555,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.5
+  m_Radius: 4
 --- !u!114 &661403313210235734
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -561,6 +570,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Chase: {fileID: 8300000, guid: 7a53f3d7205c9944d9c9ff950e87a592, type: 3}
   Hanging: {fileID: 8300000, guid: 3124e6aefe6dc2448bda95cc2b691cad, type: 3}
+  targets: []
 --- !u!1 &3311934172714378100
 GameObject:
   m_ObjectHideFlags: 0

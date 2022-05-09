@@ -106,7 +106,10 @@ public class GameSystem : NetworkBehaviour
     private IEnumerator ReturnToRoomWait()
     {
             yield return new WaitForSeconds(10f);
-            if (isServer) ReturnToRoomServer();
+            if (isServer){
+                ReturnToRoomServer();
+                Debug.Log("Returned to Room");
+            }
 
     }
 
