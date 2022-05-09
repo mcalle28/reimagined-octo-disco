@@ -215,7 +215,8 @@ GameObject:
   - component: {fileID: 3124794494963276718}
   - component: {fileID: 6015526533649995963}
   - component: {fileID: -3230492374599477100}
-  - component: {fileID: 5669622159008538104}
+  - component: {fileID: 3547871990843176892}
+  - component: {fileID: 3705619124131339843}
   m_Layer: 18
   m_Name: Hunter
   m_TagString: Untagged
@@ -464,7 +465,7 @@ MonoBehaviour:
   showGizmos: 0
   showOverlay: 0
   overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
---- !u!82 &5669622159008538104
+--- !u!82 &3547871990843176892
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -475,17 +476,17 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ec87113b60c6bab428155318fa8afc91, type: 3}
-  m_PlayOnAwake: 0
-  m_Volume: 0.5
+  m_PlayOnAwake: 1
+  m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
   MinDistance: 1
-  MaxDistance: 2
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 1
   BypassEffects: 0
@@ -560,6 +561,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &3705619124131339843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5380692545231258409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6b4f36256572d94485e07426c989ef6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  dir: {x: 0, y: 0, z: 0}
 --- !u!1 &8664814213526557340
 GameObject:
   m_ObjectHideFlags: 0

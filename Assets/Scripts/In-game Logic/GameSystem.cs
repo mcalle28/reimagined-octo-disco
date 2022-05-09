@@ -14,6 +14,9 @@ public class GameSystem : NetworkBehaviour
     [SerializeField]
     private TMP_Text victory_text;
 
+    [SerializeField]
+    private TMP_Text returning_text;
+
     public void AddPlayer(IngamePlayerController player)
     {
         if (!players.Contains(player))
@@ -105,11 +108,9 @@ public class GameSystem : NetworkBehaviour
 
     private IEnumerator ReturnToRoomWait()
     {
-            yield return new WaitForSeconds(10f);
-            if (isServer){
-                ReturnToRoomServer();
-                Debug.Log("Returned to Room");
-            }
+        returning_text.SetText("Returning Soon...");
+        yield return new WaitForSeconds(10f);
+        if (isServer) ReturnToRoomServer();
 
     }
 

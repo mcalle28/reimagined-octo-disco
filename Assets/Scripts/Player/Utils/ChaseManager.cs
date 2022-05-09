@@ -4,14 +4,24 @@ using UnityEngine;
 
 public class ChaseManager : MonoBehaviour
 {
-    private CircleCollider2D chase;
+    private BoxCollider2D chase;
+    private Animator animator;
+
     private GameObject audioComponent;
     private AudioSource audioSource;
     public AudioClip Chase, Hanging;
-    public List<IngamePlayerController> targets = new List<IngamePlayerController>();
-    void Start()
-    {
-        chase = GetComponent<CircleCollider2D>();
+
+    void Start(){
+        chase = GetComponent<BoxCollider2D>();
+        animator = GetComponentInParent<Animator>();
+
+        var aspect = (float)Screen.width / Screen.height;
+        var orthoSize = 3f;
+        var width = 2.0f * orthoSize * aspect;
+        var height = 2.0f * 3f;
+
+        chase.size = new Vector2(width, height);
+
         audioComponent = GameObject.Find("AudioManager");
         audioSource= audioComponent.GetComponent(typeof(AudioSource)) as AudioSource;
     }
@@ -19,7 +29,7 @@ public class ChaseManager : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.GetComponent<IngamePlayerController>();
-        if (player && player.role == Role.Hunter)
+        if ((player && player.role == Role.Hunter)&& !animator.GetBool("captured"))
         {
             audioSource.clip = Chase;
             audioSource.Play();
@@ -29,11 +39,17 @@ public class ChaseManager : MonoBehaviour
     private void OnTriggerExit2D(Collider2D collision)
     {
         var player = collision.GetComponent<IngamePlayerController>();
-        if (player && player.role == Role.Hunter)
+        if ((player && player.role == Role.Hunter) && audioSource.clip!=Hanging)
         {
+            WaitToPlay();
             audioSource.clip = Hanging;
             audioSource.Play();
         }
+    }
+
+    private IEnumerator WaitToPlay()
+    {
+        yield return new WaitForSeconds(5f);
     }
 
 }
