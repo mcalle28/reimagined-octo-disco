@@ -19,10 +19,13 @@ public class PlayerControl : NetworkBehaviour
     public Rigidbody2D rigidbody2d;
     public Vector3 dir;
 
+    private AudioSource audioSource;
+
     public virtual void Start()
     {
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
+        audioSource= GetComponent<AudioSource>();
         if (hasAuthority)
         {
             Camera cam = Camera.main;
@@ -63,6 +66,8 @@ public class PlayerControl : NetworkBehaviour
             dir.y = Input.GetAxisRaw("Vertical");
             dir = dir.normalized;
             bool isMoving = dir.magnitude != 0f;
+            if (isMoving){ if (!audioSource.isPlaying) audioSource.Play(); }
+            else audioSource.Stop();
             animator.SetBool("moving", isMoving);
         }
     }

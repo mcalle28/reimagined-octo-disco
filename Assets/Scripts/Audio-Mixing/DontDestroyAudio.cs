@@ -7,7 +7,7 @@ public class DontDestroyAudio : MonoBehaviour
     private AudioSource audioSource;
     private static GameObject instance;
     private bool isMainPlaying;
-    public AudioClip MainRoom, Corridor;
+    public AudioClip MainRoom, Corridor,Chase;
 
 
     private void Start()
@@ -36,6 +36,12 @@ public class DontDestroyAudio : MonoBehaviour
 
     public void PlayMainRoomClip() {
         audioSource.clip = MainRoom;
+        audioSource.Play();
+    }
+
+    public void PlayChaseClip()
+    {
+        audioSource.clip = Chase;
         audioSource.Play();
     }
 }

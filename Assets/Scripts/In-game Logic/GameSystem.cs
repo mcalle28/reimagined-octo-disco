@@ -102,10 +102,18 @@ public class GameSystem : NetworkBehaviour
 
     }
 
+
     private IEnumerator ReturnToRoomWait()
     {
             yield return new WaitForSeconds(10f);
-            var manager = NetworkManager.singleton as GHNetworkManager;
-            if (isServer) manager.ServerChangeScene(manager.RoomScene);
+            if (isServer) ReturnToRoomServer();
+
+    }
+
+    [ClientRpc]
+    private void ReturnToRoomServer()
+    {
+        var manager = NetworkManager.singleton as GHNetworkManager;
+        manager.ServerChangeScene(manager.RoomScene);
     }
 }

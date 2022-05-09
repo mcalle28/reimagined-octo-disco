@@ -32280,6 +32280,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MainRoom: {fileID: 8300000, guid: e2eab23e9d31d5942a3db37a2dd80440, type: 3}
   Corridor: {fileID: 8300000, guid: 3124e6aefe6dc2448bda95cc2b691cad, type: 3}
+  Chase: {fileID: 8300000, guid: 7a53f3d7205c9944d9c9ff950e87a592, type: 3}
 --- !u!1 &1937605381
 GameObject:
   m_ObjectHideFlags: 0
