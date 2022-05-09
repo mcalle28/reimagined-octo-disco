@@ -8,6 +8,7 @@ public class ChaseManager : MonoBehaviour
     private GameObject audioComponent;
     private AudioSource audioSource;
     public AudioClip Chase, Hanging;
+    public List<IngamePlayerController> targets = new List<IngamePlayerController>();
     void Start()
     {
         chase = GetComponent<CircleCollider2D>();
@@ -17,14 +18,22 @@ public class ChaseManager : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        audioSource.clip = Chase;
-        audioSource.Play();
+        var player = collision.GetComponent<IngamePlayerController>();
+        if (player && player.role == Role.Hunter)
+        {
+            audioSource.clip = Chase;
+            audioSource.Play();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        audioSource.clip = Hanging;
-        audioSource.Play();
+        var player = collision.GetComponent<IngamePlayerController>();
+        if (player && player.role == Role.Hunter)
+        {
+            audioSource.clip = Hanging;
+            audioSource.Play();
+        }
     }
 
 }
