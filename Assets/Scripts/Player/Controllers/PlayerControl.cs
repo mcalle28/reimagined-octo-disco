@@ -34,7 +34,7 @@ public class PlayerControl : NetworkBehaviour
 
     protected void FixedUpdate()
     {
-        if (hasAuthority)
+        if (hasAuthority && isMoveable)
         {
             Vector3 newScale = transform.localScale;
             if (dir.x < 0f && newScale.x > 0)

@@ -1,7 +1,10 @@
+using System.Collections;
+using System.Collections.Generic;
 using Mirror;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.UI;
 
 public class IngamePlayerController : PlayerControl
 {
@@ -24,7 +27,7 @@ public class IngamePlayerController : PlayerControl
     {
         base.Start();
 
-        if(hasAuthority)
+        if (hasAuthority)
         {
             v = FindObjectOfType<Volume>();
             v.profile.TryGet(out vg);
@@ -36,6 +39,8 @@ public class IngamePlayerController : PlayerControl
             else if (role == Role.Ghost)
             {
                 vg.active = false;
+                InGameUIManager.Instance.GhostAbilityBtn.Show(true);
+                InGameUIManager.Instance.GhostAbilityBtn.LinkPlayer(this);
             }
 
         }
@@ -69,7 +74,7 @@ public class IngamePlayerController : PlayerControl
 
     private void DetectGhost()
     {
-        if(playerFinder.targets.Count > 0)
+        if (playerFinder.targets.Count > 0)
         {
             CmdCatchGhost(playerFinder.GetFirstTarget().netId);
         }
@@ -79,15 +84,15 @@ public class IngamePlayerController : PlayerControl
     private void CmdCatchGhost(uint targetNetId)
     {
         IngamePlayerController target = null;
-        foreach(var player in GameSystem.Instance.GetPlayerList())
+        foreach (var player in GameSystem.Instance.GetPlayerList())
         {
-            if(player.netId == targetNetId)
+            if (player.netId == targetNetId)
             {
                 target = player;
             }
         }
 
-        if(target != null && !target.isCaptured)
+        if (target != null && !target.isCaptured)
         {
             RpcTeleport(target.transform.position);
             RpcAnimateCapture();
@@ -106,9 +111,37 @@ public class IngamePlayerController : PlayerControl
             gameObject.layer = WispLayer;
             animator.SetBool("captured", true);
         }
-        else {
+        else
+        {
             renderer.color = new Color(1f, 1f, 1f, 0);
         }
     }
 
+    [Command]
+    public void CmdScreamAbility()
+    {
+        foreach (var player in GameSystem.Instance.GetPlayerList())
+        {
+            if (player.role == Role.Hunter)
+            {
+                player.RpcScreamAbility();
+            }
+        }
+    }
+
+    [ClientRpc]
+    private void RpcScreamAbility()
+    {
+        if (hasAuthority && role == Role.Hunter)
+        {
+            StartCoroutine(StunnedTimer(2f));
+        }
+    }
+
+    private IEnumerator StunnedTimer(float secs)
+    {
+        isMoveable = false;
+        yield return new WaitForSeconds(secs);
+        isMoveable = true;
+    }
 }
