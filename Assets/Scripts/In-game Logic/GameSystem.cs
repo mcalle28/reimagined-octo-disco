@@ -9,6 +9,8 @@ public class GameSystem : NetworkBehaviour
     [SerializeField]
     public static GameSystem Instance;
 
+    private bool winCondition=false;
+
     private readonly List<IngamePlayerController> players = new List<IngamePlayerController>();
 
     [SerializeField]
@@ -16,6 +18,17 @@ public class GameSystem : NetworkBehaviour
 
     [SerializeField]
     private TMP_Text returning_text;
+
+
+    private void Update(){
+
+        if (isServer && winCondition) {
+            var manager = NetworkManager.singleton as GHNetworkManager;
+            manager.ServerChangeScene(manager.RoomScene);
+            winCondition = false;
+        }
+
+    }
 
     public void AddPlayer(IngamePlayerController player)
     {
@@ -110,14 +123,13 @@ public class GameSystem : NetworkBehaviour
     {
         returning_text.SetText("Returning Soon...");
         yield return new WaitForSeconds(10f);
-        if (isServer) ReturnToRoomServer();
+        ReturnToRoomServer();
 
     }
 
     [ClientRpc]
     private void ReturnToRoomServer()
     {
-        var manager = NetworkManager.singleton as GHNetworkManager;
-        manager.ServerChangeScene(manager.RoomScene);
+        winCondition = true;
     }
 }

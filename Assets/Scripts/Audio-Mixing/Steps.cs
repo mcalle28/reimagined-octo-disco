@@ -20,14 +20,12 @@ public class Steps : NetworkBehaviour
             dir.y = Input.GetAxisRaw("Vertical");
             dir = dir.normalized;
             bool isMoving = dir.magnitude != 0f;
-            CMDHunterMoving(isMoving);
+            if(isClient)CMDHunterMoving(isMoving);
 
             if (hunterMoving){
-                Debug.Log("Desmuteado");
                 audioSource.mute = false;
             }
             else{
-                Debug.Log("Muteado");
                 audioSource.mute=true;
             }
         
