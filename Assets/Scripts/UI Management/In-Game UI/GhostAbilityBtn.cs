@@ -28,8 +28,8 @@ public class GhostAbilityBtn : MonoBehaviour
     {
         if (abilityUses > 0)
         {
-            abilityUses -= 1;
-            if (abilityUses == 0)
+            abilityUses = abilityUses-1;
+            if (abilityUses <= 0)
             {
                 InGameUIManager.Instance.GhostAbilityBtn.Show(false);
             }

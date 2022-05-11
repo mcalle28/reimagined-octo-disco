@@ -9,6 +9,7 @@ public class GameSystem : NetworkBehaviour
     [SerializeField]
     public static GameSystem Instance;
 
+    [SyncVar]
     private bool winCondition=false;
 
     private readonly List<IngamePlayerController> players = new List<IngamePlayerController>();
@@ -128,7 +129,7 @@ public class GameSystem : NetworkBehaviour
     }
 
 
-    [Command]
+    [Command(requiresAuthority =false)]
     private void ReturnToRoomServer()
     {
         winCondition = true;
