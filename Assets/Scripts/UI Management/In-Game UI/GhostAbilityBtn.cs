@@ -26,14 +26,7 @@ public class GhostAbilityBtn : MonoBehaviour
 
     public void UseAbility()
     {
-        if (abilityUses > 0)
-        {
-            abilityUses = abilityUses-1;
-            if (abilityUses <= 0)
-            {
-                InGameUIManager.Instance.GhostAbilityBtn.Show(false);
-            }
-            player.CmdScreamAbility();
-        }
+        InGameUIManager.Instance.GhostAbilityBtn.Show(false);
+        player.CmdScreamAbility();
     }
 }
