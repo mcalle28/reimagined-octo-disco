@@ -10,7 +10,7 @@ public class GhostAbilityBtn : MonoBehaviour
     private Button abilityBtn;
 
     [SerializeField]
-    private int abilityUses = 2;
+    private int abilityUses = 1;
 
     private IngamePlayerController player;
 

@@ -127,9 +127,11 @@ public class GameSystem : NetworkBehaviour
 
     }
 
-    [ClientRpc]
+
+    [Command]
     private void ReturnToRoomServer()
     {
         winCondition = true;
+        Debug.Log(winCondition);
     }
 }
