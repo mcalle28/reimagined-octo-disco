@@ -21,7 +21,7 @@ public class GameSystem : NetworkBehaviour
 
 
     private void Update(){
-
+        Debug.Log(winCondition);
         if (isServer && winCondition) {
             var manager = NetworkManager.singleton as GHNetworkManager;
             manager.ServerChangeScene(manager.RoomScene);
@@ -132,6 +132,5 @@ public class GameSystem : NetworkBehaviour
     private void ReturnToRoomServer()
     {
         winCondition = true;
-        Debug.Log(winCondition);
     }
 }
