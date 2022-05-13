@@ -1,4 +1,4 @@
-using Mirror;
+using FishNet.Object;
 using UnityEngine.UI;
 public class UIRoom : NetworkBehaviour
 {

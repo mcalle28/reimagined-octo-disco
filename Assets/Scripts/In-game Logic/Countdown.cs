@@ -1,4 +1,5 @@
-using Mirror;
+using FishNet;
+using FishNet.Object;
 using TMPro;
 
 public class Countdown : NetworkBehaviour
@@ -11,7 +12,7 @@ public class Countdown : NetworkBehaviour
     private void Start()
     {
         IsRunning = true;
-        sinceStarted= NetworkTime.time;
+        sinceStarted= InstanceFinder.TimeManager.ServerUptime;
         totalTime = timeLeft;
     }
 
@@ -21,14 +22,14 @@ public class Countdown : NetworkBehaviour
         {
             if (timeLeft > 0)
             {
-               timeLeft = totalTime-(NetworkTime.time-sinceStarted);
+               timeLeft = totalTime-(InstanceFinder.TimeManager.ServerUptime-sinceStarted);
                DisplayTime(timeLeft);
             }
             else
             {
                 timeLeft = 0;
                 IsRunning = false;
-                if(isServer) GameSystem.Instance.RpcCheckGhostWinCon();
+                if(base.IsServer) GameSystem.Instance.RpcCheckGhostWinCon();
             }
         }
     }

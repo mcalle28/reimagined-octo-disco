@@ -1,4 +1,5 @@
-using Mirror;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 public class RoomPlayer : NetworkRoomPlayer {
 
@@ -35,7 +36,7 @@ public class RoomPlayer : NetworkRoomPlayer {
     {
         base.Start();
 
-        if(isServer)
+        if(base.IsServer)
         {
             spawnLobbyPlayer();
         }
@@ -49,7 +50,7 @@ public class RoomPlayer : NetworkRoomPlayer {
     {
         var player = Instantiate(NetworkManager.singleton.spawnPrefabs[0]).GetComponent<RoomPlayerController>();
         NetworkServer.Spawn(player.gameObject, connectionToClient);
-        player.ownerNetId = netId;
+        player.ownerObjectId = ObjectId;
         lobbyPlayerCharacter.CompleteSpawn();
     }
 }

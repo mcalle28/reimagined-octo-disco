@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
 using TMPro;
+using FishNet.Object.Synchronizing;
 
 public class GameSystem : NetworkBehaviour
 {
@@ -23,7 +24,7 @@ public class GameSystem : NetworkBehaviour
 
     private void Update(){
         Debug.Log(winCondition);
-        if (isServer && winCondition) {
+        if (base.IsServer && winCondition) {
             var manager = NetworkManager.singleton as GHNetworkManager;
             manager.ServerChangeScene(manager.RoomScene);
             winCondition = false;
@@ -64,13 +65,13 @@ public class GameSystem : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (isServer)
+        if (base.IsServer)
         {
             StartCoroutine(GameReady());
         }
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     public void RpcCheckHunterWinCon(IngamePlayerController newTarget)
     {
         var manager = NetworkManager.singleton as GHNetworkManager;
@@ -81,7 +82,7 @@ public class GameSystem : NetworkBehaviour
         {
             if (player.role == Role.Ghost && player.isCaptured) {
                 captured++;
-            } else if ((newTarget.netId == player.netId) && !player.isCaptured){
+            } else if ((newTarget.ObjectId == player.ObjectId) && !player.isCaptured){
                 player.isCaptured = true;
                 captured++;
             }
@@ -94,7 +95,7 @@ public class GameSystem : NetworkBehaviour
         }
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     public void RpcCheckGhostWinCon()
     {
         var manager = NetworkManager.singleton as GHNetworkManager;
@@ -129,7 +130,7 @@ public class GameSystem : NetworkBehaviour
     }
 
 
-    [Command(requiresAuthority =false)]
+    [ServerRpc(RequireOwnership = false)]
     private void ReturnToRoomServer()
     {
         winCondition = true;

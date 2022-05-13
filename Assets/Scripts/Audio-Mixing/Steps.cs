@@ -1,4 +1,5 @@
-using Mirror;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 
 public class Steps : NetworkBehaviour
@@ -20,7 +21,7 @@ public class Steps : NetworkBehaviour
             dir.y = Input.GetAxisRaw("Vertical");
             dir = dir.normalized;
             bool isMoving = dir.magnitude != 0f;
-            if(isClient)CMDHunterMoving(isMoving);
+            if(base.IsClient)CMDHunterMoving(isMoving);
 
             if (hunterMoving){
                 audioSource.mute = false;
@@ -31,7 +32,7 @@ public class Steps : NetworkBehaviour
         
     }
 
-    [Command]
+    [ServerRpc]
     private void CMDHunterMoving(bool hmoving)
     {
         hunterMoving = hmoving;

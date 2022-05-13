@@ -1,10 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using Mirror;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
-using UnityEngine.UI;
 
 public class IngamePlayerController : PlayerControl
 {
@@ -27,7 +26,7 @@ public class IngamePlayerController : PlayerControl
     {
         base.Start();
 
-        if (hasAuthority)
+        if (base.IsClient)
         {
             v = FindObjectOfType<Volume>();
             v.profile.TryGet(out vg);
@@ -47,13 +46,13 @@ public class IngamePlayerController : PlayerControl
         GameSystem.Instance.AddPlayer(this);
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     public void RpcTeleport(Vector3 position)
     {
         transform.position = position;
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     public void RpcAnimateCapture()
     {
         animator.Play("capturing");
@@ -63,7 +62,7 @@ public class IngamePlayerController : PlayerControl
     protected void FixedUpdate()
     {
         base.FixedUpdate();
-        if (hasAuthority)
+        if (base.IsOwner)
         {
             if (role == Role.Hunter)
             {
@@ -76,17 +75,17 @@ public class IngamePlayerController : PlayerControl
     {
         if (playerFinder.targets.Count > 0)
         {
-            CmdCatchGhost(playerFinder.GetFirstTarget().netId);
+            CmdCatchGhost(playerFinder.GetFirstTarget().ObjectId);
         }
     }
 
-    [Command]
-    private void CmdCatchGhost(uint targetNetId)
+    [ServerRpc]
+    private void CmdCatchGhost(uint targetObjectId)
     {
         IngamePlayerController target = null;
         foreach (var player in GameSystem.Instance.GetPlayerList())
         {
-            if (player.netId == targetNetId)
+            if (player.ObjectId == targetObjectId)
             {
                 target = player;
             }
@@ -102,10 +101,10 @@ public class IngamePlayerController : PlayerControl
         }
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     private void RpcGetCaught()
     {
-        if (hasAuthority)
+        if (base.IsOwner)
         {
             int WispLayer = LayerMask.NameToLayer("Wisp");
             gameObject.layer = WispLayer;
@@ -117,7 +116,7 @@ public class IngamePlayerController : PlayerControl
         }
     }
 
-    [Command]
+    [ServerRpc]
     public void CmdScreamAbility()
     {
         foreach (var player in GameSystem.Instance.GetPlayerList())
@@ -129,10 +128,10 @@ public class IngamePlayerController : PlayerControl
         }
     }
 
-    [ClientRpc]
+    [ObserversRpc]
     private void RpcScreamAbility()
     {
-        if (hasAuthority && role == Role.Hunter)
+        if (base.IsOwner && role == Role.Hunter)
         {
             StartCoroutine(StunnedTimer(2f));
         }

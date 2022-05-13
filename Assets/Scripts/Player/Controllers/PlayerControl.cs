@@ -1,6 +1,8 @@
-using Mirror;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using UnityEngine;
 using TMPro;
+
 
 public class PlayerControl : NetworkBehaviour
 {
@@ -24,7 +26,7 @@ public class PlayerControl : NetworkBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        if (hasAuthority)
+        if (base.IsClient)
         {
             Camera cam = Camera.main;
             if (cam != null)
@@ -34,7 +36,7 @@ public class PlayerControl : NetworkBehaviour
 
     protected void FixedUpdate()
     {
-        if (hasAuthority && isMoveable)
+        if (base.IsOwner && isMoveable)
         {
             Vector3 newScale = transform.localScale;
             if (dir.x < 0f && newScale.x > 0)
@@ -58,7 +60,7 @@ public class PlayerControl : NetworkBehaviour
 
     private void AnimateMove()
     {
-        if (hasAuthority && isMoveable )
+        if (base.IsOwner && isMoveable )
         {
             dir.x = Input.GetAxisRaw("Horizontal");
             dir.y = Input.GetAxisRaw("Vertical");
@@ -70,7 +72,7 @@ public class PlayerControl : NetworkBehaviour
 
     private void SetCamera(Camera cam)
     {
-        if (hasAuthority)
+        if (base.IsOwner)
         {
             cam.transform.SetParent(transform);
             cam.transform.localPosition = new Vector3(0f, 0f, -10f);

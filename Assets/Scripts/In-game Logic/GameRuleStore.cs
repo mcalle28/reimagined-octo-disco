@@ -1,5 +1,6 @@
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 public struct GameRuleData
 {
@@ -29,7 +30,7 @@ public class GameRuleStore : NetworkBehaviour
 
     void Start ()
     {
-        if(isServer)
+        if(base.IsServer)
         {
             hunterCount = 1;
             SetRecommendRule();

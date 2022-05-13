@@ -1,4 +1,4 @@
-using Mirror;
+using FishNet.Object;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

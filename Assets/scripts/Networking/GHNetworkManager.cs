@@ -1,5 +1,5 @@
 using UnityEngine;
-using Mirror;
+using FishNet.Object;
 
 public class GHNetworkManager : NetworkRoomManager{
 
