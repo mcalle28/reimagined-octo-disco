@@ -6,6 +6,7 @@ using FishNet.Object.Synchronizing;
 
 public class RoomPlayerController : PlayerControl
 {
+    /*
     [SyncVar (OnChange = nameof(SetOwnerObjectId_Hook))]
     public uint ownerObjectId;
 
@@ -21,6 +22,7 @@ public class RoomPlayerController : PlayerControl
             }
         }
     }
+    */
 
     public void CompleteSpawn()
     {

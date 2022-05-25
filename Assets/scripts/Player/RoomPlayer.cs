@@ -1,11 +1,11 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 
-public class RoomPlayer : NetworkRoomPlayer {
+public class RoomPlayer : NetworkBehaviour {
 
     private static RoomPlayer myRoomPlayer;
 
-    public static RoomPlayer MyRoomPlayer
+    /*public static RoomPlayer MyRoomPlayer
     {
         get
         {
@@ -22,7 +22,7 @@ public class RoomPlayer : NetworkRoomPlayer {
             }
             return myRoomPlayer;
         }
-    }
+    }*/
 
     [SyncVar]
     public string playerName;
@@ -34,14 +34,16 @@ public class RoomPlayer : NetworkRoomPlayer {
 
     public void Start()
     {
+        /*
         base.Start();
 
         if(base.IsServer)
         {
             spawnLobbyPlayer();
-        }
+        }*/
     }
 
+    /*
     public override void OnGUI() {
         base.OnGUI();
     }
@@ -52,5 +54,5 @@ public class RoomPlayer : NetworkRoomPlayer {
         NetworkServer.Spawn(player.gameObject, connectionToClient);
         player.ownerObjectId = ObjectId;
         lobbyPlayerCharacter.CompleteSpawn();
-    }
+    }*/
 }

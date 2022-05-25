@@ -10,7 +10,7 @@ public class UIRoom : NetworkBehaviour
     }
     public void ButtonDisconnect()
     {
-        NetworkManager.singleton.StopHost();
+        //NetworkManager.singleton.StopHost();
     }
 
 }

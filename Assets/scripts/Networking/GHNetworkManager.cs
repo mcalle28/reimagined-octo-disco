@@ -1,8 +1,9 @@
 using UnityEngine;
 using FishNet.Object;
+using FishNet.Managing;
 
-public class GHNetworkManager : NetworkRoomManager{
-
+public class GHNetworkManager {
+    /*
     public GameRuleData gameRuleData;
 
     public int minPlayerCount;
@@ -53,5 +54,5 @@ public class GHNetworkManager : NetworkRoomManager{
         }
 
         return gamePlayer;
-    }
+    }*/
 }

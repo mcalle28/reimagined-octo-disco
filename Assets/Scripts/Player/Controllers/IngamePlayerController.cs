@@ -26,7 +26,7 @@ public class IngamePlayerController : PlayerControl
     {
         base.Start();
 
-        if (base.IsClient)
+        if (IsClient)
         {
             v = FindObjectOfType<Volume>();
             v.profile.TryGet(out vg);
@@ -80,7 +80,7 @@ public class IngamePlayerController : PlayerControl
     }
 
     [ServerRpc]
-    private void CmdCatchGhost(uint targetObjectId)
+    private void CmdCatchGhost(int targetObjectId)
     {
         IngamePlayerController target = null;
         foreach (var player in GameSystem.Instance.GetPlayerList())

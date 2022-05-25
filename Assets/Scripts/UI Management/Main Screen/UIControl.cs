@@ -1,8 +1,9 @@
+using FishNet;
 using FishNet.Object;
+using FishNet.Transporting;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
-public class UIControl : MonoBehaviour
+public class UIControl : NetworkBehaviour
 {
     public Button buttonHost, buttonClient;
 
@@ -10,49 +11,25 @@ public class UIControl : MonoBehaviour
 
     private void Start()
     {
-        if (NetworkManager.singleton.networkAddress != "localhost") { inputFieldAddress.text = NetworkManager.singleton.networkAddress; }
         inputFieldAddress.onValueChanged.AddListener(delegate { ValueChangeCheck(); });
         buttonHost.onClick.AddListener(ButtonHost);
         buttonClient.onClick.AddListener(ButtonClient);
-        SetupCanvas();
     }
 
     public void ValueChangeCheck()
     {
-        NetworkManager.singleton.networkAddress = inputFieldAddress.text;
+        InstanceFinder.TransportManager.Transport.SetServerBindAddress(inputFieldAddress.text, IPAddressType.IPv4);
     }
 
     public void ButtonHost()
     {
-        NetworkManager.singleton.StartHost();
-        SetupCanvas();
+        InstanceFinder.ServerManager.StartConnection();
+        InstanceFinder.ClientManager.StartConnection();
     }
 
 
     public void ButtonClient()
     {
-        Debug.Log("Client Button Active");
-        NetworkManager.singleton.StartClient();
-        SetupCanvas();
-    }
-
-    public void SetupCanvas()
-    {
-        if (!NetworkClient.isConnected && !NetworkServer.active)
-        {
-            if (NetworkClient.active)
-            {
-                Debug.Log(NetworkManager.singleton);
-                Debug.Log("Server Start");
-            }
-            else
-            {
-                Debug.Log("Server Not connect");
-            }
-        }
-        else
-        {
-            Debug.Log("Server Setting Active Lobby");
-        }
+        InstanceFinder.ClientManager.StartConnection();
     }
 }

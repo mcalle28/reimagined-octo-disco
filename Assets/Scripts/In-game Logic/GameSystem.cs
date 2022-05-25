@@ -23,13 +23,13 @@ public class GameSystem : NetworkBehaviour
 
 
     private void Update(){
-        Debug.Log(winCondition);
-        if (base.IsServer && winCondition) {
+        /*
+        if (IsServer && winCondition) {
             var manager = NetworkManager.singleton as GHNetworkManager;
             manager.ServerChangeScene(manager.RoomScene);
             winCondition = false;
         }
-
+        */
     }
 
     public void AddPlayer(IngamePlayerController player)
@@ -74,6 +74,7 @@ public class GameSystem : NetworkBehaviour
     [ObserversRpc]
     public void RpcCheckHunterWinCon(IngamePlayerController newTarget)
     {
+        /*
         var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
         int ghostCount = players.Count - manager.hunterCount;
@@ -92,12 +93,13 @@ public class GameSystem : NetworkBehaviour
         {
             victory_text.SetText("Hunters Win!!");
             ChangeToRoom();
-        }
+        }*/
     }
 
     [ObserversRpc]
     public void RpcCheckGhostWinCon()
     {
+        /*
         var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
         int ghostCount = players.Count - manager.hunterCount;
@@ -111,7 +113,7 @@ public class GameSystem : NetworkBehaviour
         {
             victory_text.SetText("Ghosts Win!");
             ChangeToRoom();
-        }
+        }*/
     }
 
     private void ChangeToRoom()
