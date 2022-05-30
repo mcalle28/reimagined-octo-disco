@@ -1,13 +1,20 @@
 using FishNet;
+using FishNet.Connection;
+using FishNet.Managing.Scened;
 using FishNet.Object;
 using FishNet.Transporting;
+using System.Collections;
 using TMPro;
+using UnityEngine;
 using UnityEngine.UI;
 public class UIControl : NetworkBehaviour
 {
     public Button buttonHost, buttonClient;
 
     public TMP_InputField inputFieldAddress;
+
+    public ConnManager connManager;
+
 
     private void Start()
     {
@@ -18,18 +25,18 @@ public class UIControl : NetworkBehaviour
 
     public void ValueChangeCheck()
     {
-        InstanceFinder.TransportManager.Transport.SetServerBindAddress(inputFieldAddress.text, IPAddressType.IPv4);
+        connManager.SetAddress(inputFieldAddress.text);
     }
 
     public void ButtonHost()
     {
-        InstanceFinder.ServerManager.StartConnection();
-        InstanceFinder.ClientManager.StartConnection();
+        connManager.StartHost();
     }
 
-
+     
     public void ButtonClient()
     {
-        InstanceFinder.ClientManager.StartConnection();
+        connManager.StartClient();
     }
+
 }

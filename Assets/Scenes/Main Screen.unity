@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -17079,6 +17079,7 @@ MonoBehaviour:
   buttonHost: {fileID: 1506630388}
   buttonClient: {fileID: 998265986}
   inputFieldAddress: {fileID: 1403897973}
+  connManager: {fileID: 1801407763}
 --- !u!114 &596347730
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17094,9 +17095,9 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 596347729}
   SceneTransformProperties:
-    Position: {x: 421.25, y: 188, z: 0}
+    Position: {x: 420.6, y: 224.2, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 1.053125, y: 1.053125, z: 1.053125}
+    LocalScale: {x: 1.0515, y: 1.0515, z: 1.0515}
   _isNetworked: 0
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
@@ -17104,6 +17105,7 @@ MonoBehaviour:
   _scenePathHash: 585566195
   _sceneId: 2514987659654586469
   _sceneNetworkObjects:
+  - {fileID: 1801407764}
   - {fileID: 596347730}
 --- !u!1 &763146368
 GameObject:
@@ -31934,6 +31936,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1797980967}
   m_CullTransparentMesh: 1
+--- !u!1 &1801407762
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1801407765}
+  - component: {fileID: 1801407764}
+  - component: {fileID: 1801407763}
+  m_Layer: 0
+  m_Name: ConnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1801407763
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801407762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c39c042ab2106e445ad8e931264caeb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 1801407764}
+  _networkObjectCache: {fileID: 1801407764}
+--- !u!114 &1801407764
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801407762}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _networkBehaviours:
+  - {fileID: 1801407763}
+  SceneTransformProperties:
+    Position: {x: 0, y: 0, z: 0}
+    Rotation: {x: 0, y: 0, z: 0, w: 1}
+    LocalScale: {x: 1, y: 1, z: 1}
+  _isNetworked: 1
+  _hasParentNetworkObjectAtEdit: 0
+  NetworkObserver: {fileID: 0}
+  _prefabId: -1
+  _scenePathHash: 585566195
+  _sceneId: 2514987660569147847
+  _sceneNetworkObjects:
+  - {fileID: 1801407764}
+  - {fileID: 596347730}
+--- !u!4 &1801407765
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801407762}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1812907770
 GameObject:
   m_ObjectHideFlags: 0
