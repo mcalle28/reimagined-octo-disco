@@ -2,9 +2,6 @@ using FishNet;
 using FishNet.Managing.Scened;
 using FishNet.Object;
 using FishNet.Transporting;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 
 public class ConnManager : NetworkBehaviour
 {
@@ -24,10 +21,8 @@ public class ConnManager : NetworkBehaviour
     public void ChangeSceneToRoom()
     {
         SceneLoadData sld = new SceneLoadData("Room");
-        InstanceFinder.NetworkManager.SceneManager.LoadGlobalScenes(sld);
-
-        SceneUnloadData sud = new SceneUnloadData("Main Screen");
-        InstanceFinder.NetworkManager.SceneManager.UnloadGlobalScenes(sud);
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
     public override void OnStartServer()

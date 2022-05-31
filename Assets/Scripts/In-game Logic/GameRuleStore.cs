@@ -30,7 +30,7 @@ public class GameRuleStore : NetworkBehaviour
 
     void Start ()
     {
-        if(base.IsServer)
+        if(IsServer)
         {
             hunterCount = 1;
             SetRecommendRule();
