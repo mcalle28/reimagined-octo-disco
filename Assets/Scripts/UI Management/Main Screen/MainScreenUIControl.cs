@@ -2,7 +2,7 @@ using FishNet.Object;
 using TMPro;
 using UnityEngine.UI;
 
-public class MainScreenUI : NetworkBehaviour
+public class MainScreenUIControl : NetworkBehaviour
 {
     public Button buttonHost, buttonClient;
 
