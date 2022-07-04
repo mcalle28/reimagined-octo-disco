@@ -2,13 +2,14 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Managing;
 
-public class GHNetworkManager {
-    /*
+public class RoomManager : NetworkBehaviour {
+    
     public GameRuleData gameRuleData;
 
     public int minPlayerCount;
     public int hunterCount = 1;
 
+    /*
     public override void OnRoomServerConnect(NetworkConnectionToClient conn)
     {
         base.OnRoomServerConnect(conn);

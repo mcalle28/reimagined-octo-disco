@@ -1,19 +1,14 @@
-using FishNet;
-using FishNet.Connection;
-using FishNet.Managing.Scened;
 using FishNet.Object;
-using FishNet.Transporting;
-using System.Collections;
 using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
-public class UIControl : NetworkBehaviour
+
+public class MainScreenUI : NetworkBehaviour
 {
     public Button buttonHost, buttonClient;
 
     public TMP_InputField inputFieldAddress;
 
-    public ConnManager connManager;
+    public MainManager mainManager;
 
 
     private void Start()
@@ -25,18 +20,18 @@ public class UIControl : NetworkBehaviour
 
     public void ValueChangeCheck()
     {
-        connManager.SetAddress(inputFieldAddress.text);
+        mainManager.SetAddress(inputFieldAddress.text);
     }
 
     public void ButtonHost()
     {
-        connManager.StartHost();
+        mainManager.StartHost();
     }
 
      
     public void ButtonClient()
     {
-        connManager.StartClient();
+        mainManager.StartClient();
     }
 
 }

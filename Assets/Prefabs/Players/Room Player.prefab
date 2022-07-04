@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8301931343585589189}
-  - component: {fileID: 1209983705962812294}
   - component: {fileID: 2755762656537800023}
+  - component: {fileID: 3854092944291332538}
   m_Layer: 0
   m_Name: Room Player
   m_TagString: Untagged
@@ -33,26 +33,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1209983705962812294
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787588669286741354}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03e757d2217534b589492b3e637282b3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  syncMode: 0
-  syncInterval: 0.01
-  showRoomGUI: 1
-  readyToBegin: 0
-  index: 0
-  playerName: 
-  role: 0
-  lobbyPlayerCharacter: {fileID: 0}
 --- !u!114 &2755762656537800023
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -77,3 +57,21 @@ MonoBehaviour:
   _scenePathHash: 0
   _sceneId: 0
   _sceneNetworkObjects: []
+--- !u!114 &3854092944291332538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787588669286741354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03e757d2217534b589492b3e637282b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 2755762656537800023}
+  _networkObjectCache: {fileID: 0}
+  playerName: 
+  role: 0
+  lobbyPlayerCharacter: {fileID: 0}

@@ -3,7 +3,7 @@ using FishNet.Managing.Scened;
 using FishNet.Object;
 using FishNet.Transporting;
 
-public class ConnManager : NetworkBehaviour
+public class MainManager : NetworkBehaviour
 {
     public void SetAddress(string add) {
         InstanceFinder.TransportManager.Transport.SetServerBindAddress(add, IPAddressType.IPv4);
