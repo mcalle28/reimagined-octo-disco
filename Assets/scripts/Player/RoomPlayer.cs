@@ -1,5 +1,6 @@
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using UnityEngine;
 
 public class RoomPlayer : NetworkBehaviour {
 
@@ -11,4 +12,23 @@ public class RoomPlayer : NetworkBehaviour {
 
     [SyncVar]
     public bool ready = false;
+
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        RoomManager.Instance.players.Add(this);
+    }
+
+    public override void OnStopServer()
+    {
+        base.OnStopServer();
+        RoomManager.Instance.players.Remove(this);
+    }
+
+    [ServerRpc]
+    public void ServerSetIsReady(bool value)
+    {
+        ready = value;
+    }
+
 }

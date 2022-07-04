@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.12731689, g: 0.13414702, b: 0.1210784, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414736, b: 0.12107852, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -22964,6 +22964,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 399751877}
   minPlayerCount: 0
   hunterCount: 1
+  canStart: 0
 --- !u!114 &399751881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39202,7 +39203,6 @@ GameObject:
   - component: {fileID: 1024856518}
   - component: {fileID: 1024856517}
   - component: {fileID: 1024856516}
-  - component: {fileID: 1024856515}
   - component: {fileID: 1024856514}
   - component: {fileID: 1024856520}
   m_Layer: 5
@@ -39228,23 +39228,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1024856520}
   _networkObjectCache: {fileID: 1024856520}
   buttonDisconnect: {fileID: 579641830}
---- !u!114 &1024856515
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1024856513}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneId: 2532141644
-  serverOnly: 0
-  visible: 0
-  m_AssetId: 
-  hasSpawned: 0
+  buttonReady: {fileID: 534070467}
 --- !u!114 &1024856516
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39344,9 +39328,9 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 1024856514}
   SceneTransformProperties:
-    Position: {x: 320, y: 240, z: 0}
+    Position: {x: 443.8, y: 223.8, z: 0}
     Rotation: {x: 0, y: 0, z: 0, w: 1}
-    LocalScale: {x: 0.8, y: 0.8, z: 0.8}
+    LocalScale: {x: 1.1094999, y: 1.1094999, z: 1.1094999}
   _isNetworked: 1
   _hasParentNetworkObjectAtEdit: 0
   NetworkObserver: {fileID: 0}
