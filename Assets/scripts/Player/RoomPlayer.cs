@@ -1,3 +1,4 @@
+using FishNet;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine;
@@ -30,5 +31,4 @@ public class RoomPlayer : NetworkBehaviour {
     {
         ready = value;
     }
-
 }

@@ -3,6 +3,8 @@ using FishNet.Object;
 using FishNet.Managing;
 using FishNet.Object.Synchronizing;
 using System.Linq;
+using FishNet.Managing.Scened;
+using FishNet;
 
 public class RoomManager : NetworkBehaviour {
     
@@ -26,10 +28,14 @@ public class RoomManager : NetworkBehaviour {
     private void Update()
     {
         if (!IsServer)return;
-
+        if (players.Count == 0) return;
         canStart = players.All(player => player.ready);
+        if (canStart)
+        {
+            ChangeSceneToGame();
+        }
 
-        Debug.Log(canStart);
+        //Debug.Log(canStart);
     }
 
     public RoomPlayer GetMyRoomPlayer()
@@ -40,5 +46,12 @@ public class RoomManager : NetworkBehaviour {
             if (player.IsOwner) return player;
         }
         return null;
+    }
+
+    public void ChangeSceneToGame()
+    {
+        SceneLoadData sld = new SceneLoadData("Hanging Corridor");
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 }
