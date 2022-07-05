@@ -5,12 +5,14 @@ using FishNet.Object.Synchronizing;
 using System.Linq;
 using FishNet.Managing.Scened;
 using FishNet;
+using System.Collections.Generic;
 
 public class RoomManager : NetworkBehaviour {
     
     public GameRuleData gameRuleData;
     public int minPlayerCount;
     public int hunterCount = 1;
+    private bool starting = false;
 
     public static RoomManager Instance { get; private set; }
 
@@ -30,19 +32,17 @@ public class RoomManager : NetworkBehaviour {
         if (!IsServer)return;
         if (players.Count == 0) return;
         canStart = players.All(player => player.ready);
-        if (canStart)
+        if (canStart && !starting)
         {
+            starting = true;
             ChangeSceneToGame();
         }
-
-        //Debug.Log(canStart);
     }
 
     public RoomPlayer GetMyRoomPlayer()
     {
         foreach(var player in players)
         {
-            Debug.Log(player);
             if (player.IsOwner) return player;
         }
         return null;
@@ -50,7 +50,17 @@ public class RoomManager : NetworkBehaviour {
 
     public void ChangeSceneToGame()
     {
-        SceneLoadData sld = new SceneLoadData("Hanging Corridor");
+        List<NetworkObject> loadData = new List<NetworkObject>();
+        string[] scenes = new string[1];
+        foreach (var player in players)
+        {
+            loadData.Add(player.GetComponent<NetworkObject>());
+        }
+        scenes[0] = "Hanging Corridor";
+        SceneLoadData sld = new SceneLoadData(scenes, loadData.ToArray());
+        object[] roomParams = new object[] { players };
+        LoadParams loadParams = new LoadParams { ServerParams = roomParams };
+        sld.Params = loadParams;
         sld.ReplaceScenes = ReplaceOption.All;
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }

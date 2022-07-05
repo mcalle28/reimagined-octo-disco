@@ -4,6 +4,7 @@ using UnityEngine;
 using FishNet.Object;
 using TMPro;
 using FishNet.Object.Synchronizing;
+using FishNet.Managing.Scened;
 
 public class GameSystem : NetworkBehaviour
 {
@@ -65,8 +66,9 @@ public class GameSystem : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        if (base.IsServer)
+        if (IsServer)
         {
+
             StartCoroutine(GameReady());
         }
     }
