@@ -5,6 +5,9 @@ using FishNet.Object;
 using TMPro;
 using FishNet.Object.Synchronizing;
 using FishNet.Managing.Scened;
+using FishNet.Connection;
+using FishNet;
+using System;
 
 public class GameSystem : NetworkBehaviour
 {
@@ -62,7 +65,22 @@ public class GameSystem : NetworkBehaviour
     private void Awake()
     {
         Instance = this;
+        InstanceFinder.SceneManager.OnLoadEnd += GetPlayerData;
     }
+
+    public void GetPlayerData(SceneLoadEndEventArgs args)
+    {
+        if (!IsServer) return;
+        Debug.Log("Loaded Scene");
+        if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Hanging Corridor")
+        {
+            LoadParams hangingParams = args.QueueData.SceneLoadData.Params;
+            Debug.Log(hangingParams.ServerParams);
+            Debug.Log("======");
+            Debug.Log(hangingParams.ServerParams[0]);
+        }
+    }
+
     // Start is called before the first frame update
     void Start()
     {

@@ -62,8 +62,6 @@ public class RoomManager : NetworkBehaviour {
         LoadParams loadParams = new LoadParams { ServerParams = roomParams };
         sld.Params = loadParams;
         sld.ReplaceScenes = ReplaceOption.All;
-        players[0].name = "sansalosans";
-        Debug.Log("Player Count on Room: "+ players.Count + " with name " + players[0].name);
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 }
