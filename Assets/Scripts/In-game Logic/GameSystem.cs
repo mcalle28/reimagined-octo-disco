@@ -30,6 +30,9 @@ public class GameSystem : NetworkBehaviour
 
     public GameObject hunterPrefab, ghostPrefab;
 
+    [SyncVar]
+    private bool sceneHasLoaded=false;
+
 
     private void Update(){
         /*
@@ -75,17 +78,16 @@ public class GameSystem : NetworkBehaviour
 
     public void GetPlayerData(SceneLoadEndEventArgs args)
     {
-        if (!IsServer) return;
-        Debug.Log("Loaded Scene");
+        if (sceneHasLoaded || !IsServer) return;
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Hanging Corridor")
         {
-            LoadParams hangingParams = args.QueueData.SceneLoadData.Params;
-            SyncList<RoomPlayer> roomPlayers = hangingParams.ServerParams[0] as SyncList<RoomPlayer>;
+            RoomPlayer[] roomPlayers = FindObjectsOfType<RoomPlayer>();
             foreach (RoomPlayer r in roomPlayers)
             {
                 spawnPlayerCharacter(r);
             }
         }
+        sceneHasLoaded = true;
     }
 
     // Start is called before the first frame update

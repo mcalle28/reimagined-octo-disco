@@ -18,6 +18,7 @@ public class SpawnPoints : MonoBehaviour
 
     public GameObject getSpawnPoint(Role role)
     {
+
         if(ghostCounter == 0)
         {
             ghostCounter = ghostSpawnPoints.Count-1 ;
