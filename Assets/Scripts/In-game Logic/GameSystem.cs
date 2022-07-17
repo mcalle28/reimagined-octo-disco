@@ -17,6 +17,8 @@ public class GameSystem : NetworkBehaviour
     [SyncVar]
     private bool winCondition = false;
 
+    private int hunterCount = 0;
+
     private readonly List<IngamePlayerController> players = new List<IngamePlayerController>();
 
     [SerializeField]
@@ -31,17 +33,22 @@ public class GameSystem : NetworkBehaviour
     public GameObject hunterPrefab, ghostPrefab;
 
     [SyncVar]
-    private bool sceneHasLoaded=false;
+    private bool sceneHasLoaded = false;
+
 
 
     private void Update(){
-        /*
         if (IsServer && winCondition) {
-            var manager = NetworkManager.singleton as GHNetworkManager;
-            manager.ServerChangeScene(manager.RoomScene);
+            ChangeSceneToRoom();
             winCondition = false;
         }
-        */
+    }
+
+    public void ChangeSceneToRoom()
+    {
+        SceneLoadData sld = new SceneLoadData("Room");
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
     public void AddPlayer(IngamePlayerController player)
@@ -113,6 +120,7 @@ public class GameSystem : NetworkBehaviour
         }
         else
         {
+            hunterCount++;
             go = Instantiate(hunterPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
         }
         InstanceFinder.ServerManager.Spawn(go, roomPlayer.Owner);
@@ -121,10 +129,8 @@ public class GameSystem : NetworkBehaviour
     [ObserversRpc]
     public void RpcCheckHunterWinCon(IngamePlayerController newTarget)
     {
-        /*
-        var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
-        int ghostCount = players.Count - manager.hunterCount;
+        int ghostCount = players.Count - hunterCount;
 
         foreach (IngamePlayerController player in players)
         {
@@ -140,16 +146,14 @@ public class GameSystem : NetworkBehaviour
         {
             victory_text.SetText("Hunters Win!!");
             ChangeToRoom();
-        }*/
+        }
     }
 
     [ObserversRpc]
     public void RpcCheckGhostWinCon()
     {
-        /*
-        var manager = NetworkManager.singleton as GHNetworkManager;
         int captured = 0;
-        int ghostCount = players.Count - manager.hunterCount;
+        int ghostCount = players.Count - hunterCount;
 
         foreach (IngamePlayerController player in players)
         {
@@ -160,7 +164,7 @@ public class GameSystem : NetworkBehaviour
         {
             victory_text.SetText("Ghosts Win!");
             ChangeToRoom();
-        }*/
+        }
     }
 
     private void ChangeToRoom()
