@@ -15,7 +15,7 @@ public class GameSystem : NetworkBehaviour
     public static GameSystem Instance;
 
     [SyncVar]
-    private bool winCondition=false;
+    private bool winCondition = false;
 
     private readonly List<IngamePlayerController> players = new List<IngamePlayerController>();
 
@@ -24,6 +24,11 @@ public class GameSystem : NetworkBehaviour
 
     [SerializeField]
     private TMP_Text returning_text;
+
+    [SerializeField]
+    private SpawnPoints spawnPoints;
+
+    public GameObject hunterPrefab, ghostPrefab;
 
 
     private void Update(){
@@ -75,9 +80,11 @@ public class GameSystem : NetworkBehaviour
         if (UnityEngine.SceneManagement.SceneManager.GetActiveScene().name == "Hanging Corridor")
         {
             LoadParams hangingParams = args.QueueData.SceneLoadData.Params;
-            Debug.Log(hangingParams.ServerParams);
-            Debug.Log("======");
-            Debug.Log(hangingParams.ServerParams[0]);
+            SyncList<RoomPlayer> roomPlayers = hangingParams.ServerParams[0] as SyncList<RoomPlayer>;
+            foreach (RoomPlayer r in roomPlayers)
+            {
+                spawnPlayerCharacter(r);
+            }
         }
     }
 
@@ -89,6 +96,24 @@ public class GameSystem : NetworkBehaviour
 
             StartCoroutine(GameReady());
         }
+    }
+
+    
+    public void spawnPlayerCharacter(RoomPlayer roomPlayer)
+    {
+        RoomPlayer rp = roomPlayer.GetComponent<RoomPlayer>();
+        GameObject spawnPoint = spawnPoints.getSpawnPoint(rp.role);
+        GameObject go;
+        if (rp.role != Role.Hunter)
+        {
+
+            go = Instantiate(ghostPrefab,spawnPoint.transform.position,spawnPoint.transform.rotation);
+        }
+        else
+        {
+            go = Instantiate(hunterPrefab, spawnPoint.transform.position, spawnPoint.transform.rotation);
+        }
+        InstanceFinder.ServerManager.Spawn(go, roomPlayer.Owner);
     }
 
     [ObserversRpc]

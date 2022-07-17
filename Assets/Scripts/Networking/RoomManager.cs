@@ -35,6 +35,7 @@ public class RoomManager : NetworkBehaviour {
         if (canStart && !starting)
         {
             starting = true;
+            assignRoles();
             ChangeSceneToGame();
         }
     }
@@ -63,5 +64,26 @@ public class RoomManager : NetworkBehaviour {
         sld.Params = loadParams;
         sld.ReplaceScenes = ReplaceOption.All;
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    }
+
+    public void assignRoles()
+    {
+        foreach (RoomPlayer rp in players)
+        {
+            rp.role = Role.Ghost;
+        }
+        gameRuleData = FindObjectOfType<GameRuleStore>().GetGameRuleData();
+        for (int i = 0; i < hunterCount; i++)
+        {
+            var player = players[Random.Range(0, players.Count)];
+            if (player.role != Role.Hunter)
+            {
+                player.role = Role.Hunter;
+            }
+            else
+            {
+                i--;
+            }
+        }
     }
 }
