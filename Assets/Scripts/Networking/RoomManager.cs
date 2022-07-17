@@ -66,6 +66,15 @@ public class RoomManager : NetworkBehaviour {
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
     }
 
+    public void ChangeSceneToMain()
+    {
+        string[] scenes = new string[1];
+        scenes[0] = "Main Screen";
+        SceneLoadData sld = new SceneLoadData(scenes);
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    }
+
     public void assignRoles()
     {
         foreach (RoomPlayer rp in players)

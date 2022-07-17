@@ -1,9 +1,12 @@
+using FishNet;
 using FishNet.Object;
 using UnityEngine;
 using UnityEngine.UI;
 public class UIRoom : NetworkBehaviour
 {
     public Button buttonDisconnect,buttonReady;
+
+    public RoomManager roomManager;
 
     private void Start()
     {
@@ -12,7 +15,12 @@ public class UIRoom : NetworkBehaviour
     }
     public void ButtonDisconnect()
     {
-        //NetworkManager.singleton.StopHost();
+        InstanceFinder.ClientManager.StopConnection();
+        if (IsServer)
+        {
+            InstanceFinder.ServerManager.StopConnection(true);
+        }
+        roomManager.ChangeSceneToMain();
     }
     public void ButtonReady()
     {

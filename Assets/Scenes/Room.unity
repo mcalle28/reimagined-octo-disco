@@ -39229,6 +39229,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1024856520}
   buttonDisconnect: {fileID: 579641830}
   buttonReady: {fileID: 534070467}
+  roomManager: {fileID: 399751880}
 --- !u!114 &1024856516
 MonoBehaviour:
   m_ObjectHideFlags: 0
