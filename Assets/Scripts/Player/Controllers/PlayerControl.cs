@@ -14,9 +14,6 @@ public class PlayerControl : NetworkBehaviour
     [SyncVar]
     public float speed;
 
-    [SerializeField]
-    private float cameraSize = 3f;
-
     public Animator animator;
     public Rigidbody2D rigidbody2d;
     public Vector3 dir;
@@ -26,12 +23,6 @@ public class PlayerControl : NetworkBehaviour
     {
         animator = GetComponent<Animator>();
         rigidbody2d = GetComponent<Rigidbody2D>();
-        if (IsClient)
-        {
-            Camera cam = Camera.main;
-            if (cam != null)
-                SetCamera(cam);
-        }
     }
 
     protected void FixedUpdate()
@@ -69,14 +60,5 @@ public class PlayerControl : NetworkBehaviour
             animator.SetBool("moving", isMoving);
         }
     }
-
-    private void SetCamera(Camera cam)
-    {
-            cam.transform.SetParent(transform);
-            cam.transform.localPosition = new Vector3(0f, 0f, -10f);
-            cam.orthographicSize = cameraSize;
-        
-    }
-
 
 }
