@@ -25,14 +25,10 @@ public class GameRuleStore : NetworkBehaviour
         hunterSight = 1f;
     }
 
-    [SyncVar]
-    private int hunterCount;
-
     void Start ()
     {
         if(IsServer)
         {
-            hunterCount = 1;
             SetRecommendRule();
         }
     }

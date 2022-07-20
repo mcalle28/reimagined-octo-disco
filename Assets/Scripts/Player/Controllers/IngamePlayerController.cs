@@ -38,11 +38,12 @@ public class IngamePlayerController : PlayerControl
             else if (role == Role.Ghost)
             {
                 vg.active = false;
-                InGameUIManager.Instance.GhostAbilityBtn.Show(true);
-                InGameUIManager.Instance.GhostAbilityBtn.LinkPlayer(this);
-            }
 
+            }
+            InGameUIManager.Instance.GhostAbilityBtn.LinkPlayer(this);
+            InGameUIManager.Instance.GhostAbilityBtn.Show(true);
         }
+
         GameSystem.Instance.AddPlayer(this);
     }
 

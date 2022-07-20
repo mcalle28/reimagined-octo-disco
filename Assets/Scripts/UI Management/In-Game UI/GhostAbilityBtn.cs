@@ -9,14 +9,11 @@ public class GhostAbilityBtn : MonoBehaviour
     [SerializeField]
     private Button abilityBtn;
 
-    [SerializeField]
-    private int abilityUses = 1;
-
     private IngamePlayerController player;
 
     public void Show(bool enabled)
     {
-        gameObject.SetActive(enabled);
+        if(player.role == Role.Ghost) gameObject.SetActive(enabled);
     }
 
     public void LinkPlayer(IngamePlayerController playerController)
